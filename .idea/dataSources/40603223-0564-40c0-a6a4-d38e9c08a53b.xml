@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - stashit@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="stashit">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <schema id="3" name="mysql"/>
+    <schema id="4" name="performance_schema"/>
+    <schema id="5" name="SAMPLE"/>
+    <schema id="6" name="sys"/>
+    <schema id="7" name="testSample"/>
+    <schema id="8" name="AuthDemo"/>
+    <schema id="9" name="weekFive"/>
+    <table id="10" parent="1" name="users"/>
+    <table id="11" parent="1" name="user_roles"/>
+    <column id="12" parent="10" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="13" parent="10" name="user_type">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="14" parent="10" name="user_name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="15" parent="10" name="user_pass">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="16" parent="10" name="address">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="17" parent="10" name="city">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="18" parent="10" name="user_rating">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="19" parent="10" name="joinDate">
+      <data-type>date|0</data-type>
+    </column>
+    <key id="20" parent="10" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="21" parent="11" name="user_name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="22" parent="11" name="role_name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <key id="23" parent="11" name="PRIMARY">
+      <columns>user_name
+role_name</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
