@@ -5,6 +5,7 @@
   Time: 12:58 PM
   To change this template use File | Settings | File Templates.
 --%>
-<footer>
-    <h4>StaShit LLC</h4>
+
+<footer class="footer">
+    <p>&copy; StaShit 2016 Company, Inc.</p>
 </footer>

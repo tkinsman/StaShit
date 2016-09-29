@@ -1,11 +1,7 @@
 <%@include file="head.jsp"%>
 <html>
+<h1>User Home</h1>
 
+<p><a href="index.jsp">Home</a></p>
 
-<%@include file="header.jsp"%>
-<body>
-<%@include file="navbar.jsp"%>
-
-</body>
-<%@include file="footer.jsp"%>
 </html>

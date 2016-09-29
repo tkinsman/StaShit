@@ -16,7 +16,7 @@
 
 <body>
 
-<%@include file="navigation.jsp"%>
+
 
 </body>
 
