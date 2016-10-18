@@ -1,6 +1,8 @@
 package edu.matc.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -10,9 +12,12 @@ import javax.persistence.Table;
 @Table(name = "user_roles")
 public class UserRoles {
 
-
+    @Id
+    @Column(name = "user_name")
     private String user_name;
 
+    @Id
+    @Column(name = "role_name")
     private String role_name;
 
     public UserRoles(String user_name, String role_name) {

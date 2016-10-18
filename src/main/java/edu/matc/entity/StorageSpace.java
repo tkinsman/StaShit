@@ -33,6 +33,9 @@ public class StorageSpace {
     @Column(name = "ssRating")
     private int ssRating;
 
+    public StorageSpace() {
+    }
+
     public StorageSpace(String ssName, String ssDescription, String ssType, Boolean ssAvailibility, int ssRating) {
         this.ssName = ssName;
         this.ssDescription = ssDescription;

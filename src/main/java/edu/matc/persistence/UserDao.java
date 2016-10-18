@@ -67,6 +67,7 @@ public class UserDao {
         }
 
         int id = user.getUserid();
+        //TODO take out printline and replace with log
         System.out.println("user ID of added: " + id);
         return id;
     }

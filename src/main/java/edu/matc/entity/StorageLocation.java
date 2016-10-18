@@ -37,6 +37,8 @@ public class StorageLocation {
     @Column(name = "locName")
     private String stoLocName;
 
+    public StorageLocation() {
+    }
 
     public StorageLocation(String stoLocDescription, String stoLocAddress, String stoLocState, String stoLocZip, String stoLocName) {
         this.stoLocDescription = stoLocDescription;
