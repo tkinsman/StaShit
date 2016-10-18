@@ -31,6 +31,8 @@ public class UserDaoTest {
         log.info("this is the get all users test" + users);
     }
 
+//    @Test(expected = <expected exception>)
+
     @Test
     public void getUser() throws Exception {
 
