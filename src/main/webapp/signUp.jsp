@@ -17,6 +17,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheets/signup.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -51,14 +52,52 @@
         <div class="form-group">
             <legend>Register</legend>
         </div>
-
-
-
-        <div class="form-group">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Enter Username Here.." class="form-control">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="Enter First Name Here.." class="form-control">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Enter Last Name Here.." class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label>City</label>
+                    <input type="text" placeholder="Enter City Name Here.." class="form-control">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>State</label>
+                    <input type="text" placeholder="Enter State Name Here.." class="form-control">
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Zip</label>
+                    <input type="text" placeholder="Enter Zip Code Here.." class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" placeholder="Enter Phone Number Here.." class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="text" placeholder="Enter Email Address Here.." class="form-control">
+            </div>
             <div class="col-sm-10 col-sm-offset-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
+
     </form>
 
     <p><a href="index.jsp">GO HOME</a></p>

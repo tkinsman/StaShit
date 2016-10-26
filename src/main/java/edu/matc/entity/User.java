@@ -26,6 +26,12 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
     @Column(name = "user_pass")
     private String password;
 
@@ -45,9 +51,11 @@ public class User {
     public User() {
     }
 
-    public User(String userType, String userName, String password, String address, String city, int userRating, LocalDate joinDate) {
+    public User(String userType, String userName, String firstName, String lastName, String password, String address, String city, int userRating, LocalDate joinDate) {
         this.userType = userType;
         this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
         this.address = address;
         this.city = city;
@@ -77,6 +85,22 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {

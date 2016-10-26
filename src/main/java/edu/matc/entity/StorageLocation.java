@@ -40,9 +40,10 @@ public class StorageLocation {
     public StorageLocation() {
     }
 
-    public StorageLocation(String stoLocDescription, String stoLocAddress, String stoLocState, String stoLocZip, String stoLocName) {
+    public StorageLocation(String stoLocDescription, String stoLocAddress, String city, String stoLocState, String stoLocZip, String stoLocName) {
         this.stoLocDescription = stoLocDescription;
         this.stoLocAddress = stoLocAddress;
+        this.city = city;
         this.stoLocState = stoLocState;
         this.stoLocZip = stoLocZip;
         this.stoLocName = stoLocName;

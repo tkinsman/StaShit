@@ -33,16 +33,23 @@ public class StorageSpace {
     @Column(name = "ssRating")
     private int ssRating;
 
+    @Column(name = "storageLocationId")
+    private int storageLocationId;
+
     public StorageSpace() {
     }
 
-    public StorageSpace(String ssName, String ssDescription, String ssType, Boolean ssAvailibility, int ssRating) {
+
+    public StorageSpace(String ssName, String ssDescription, String ssType, Boolean ssAvailibility, int ssRating, int storageLocationId) {
         this.ssName = ssName;
         this.ssDescription = ssDescription;
         this.ssType = ssType;
         this.ssAvailibility = ssAvailibility;
         this.ssRating = ssRating;
+        this.storageLocationId = storageLocationId;
+
     }
+
 
     public int getStorageSpaceId() {
         return storageSpaceId;
@@ -90,5 +97,13 @@ public class StorageSpace {
 
     public void setSsRating(int ssRating) {
         this.ssRating = ssRating;
+    }
+
+    public int getStorageLocationId() {
+        return storageLocationId;
+    }
+
+    public void setStorageLocationId(int storageLocationId) {
+        this.storageLocationId = storageLocationId;
     }
 }

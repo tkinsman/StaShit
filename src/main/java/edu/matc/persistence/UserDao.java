@@ -13,12 +13,15 @@ import java.util.List;
  * Created by toddkinsman on 9/21/16.
  */
 public class UserDao {
+    private final Logger logHibr = Logger.getLogger("hibernateLogger");
     private final Logger log = Logger.getLogger(this.getClass());
+
 
     /** Return a list of all users
      *
      * @return All users
      */
+    //Todo add error handling for each function
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
@@ -60,7 +63,7 @@ public class UserDao {
                 trns.rollback();
             }
             e.printStackTrace();
-            log.info("The runtime exception: " + e);
+            log.info("The runtime exception to add user: " + e);
         } finally {
             session.flush();
             session.close();
@@ -76,7 +79,7 @@ public class UserDao {
      * delete a user by id
      * @param id
      */
-    public void deleteUser(int id) {
+    public int deleteUser(int id) {
         // TODO delete the user with the given id
         Transaction trns = null;
         int sucInt;
@@ -84,6 +87,7 @@ public class UserDao {
         try {
             trns = session.beginTransaction();
             User user = (User) session.load(User.class, id);
+            logHibr.trace("This is the id of user to delete: " + id);
             session.delete(user);
             session.getTransaction().commit();
             sucInt = 1;
@@ -92,11 +96,14 @@ public class UserDao {
                 trns.rollback();
             }
             e.printStackTrace();
-            log.info("The runtime exception to delete user: " + e);
+            sucInt = 0;
+            logHibr.trace("The runtime exception to delete user: " + e);
         } finally {
             session.flush();
             session.close();
         }
+
+        return sucInt;
     }
 
     /**
