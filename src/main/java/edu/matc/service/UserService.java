@@ -10,6 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by toddkinsman on 10/26/16.
@@ -21,18 +22,19 @@ public class UserService {
 
     @GET
     @Path("/users")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers(){
-        return userDao.getAllUsers();
+        List<User> users = userDao.getAllUsers();
+        return users;
     }
 
     @GET
     @Path("/users/{param}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUserWithId(@PathParam("param") int userId) {
+    public Response getUserWithId(@PathParam("param") int userId) {
         User user = userDao.getUser(userId);
 
-        return user;
+        return Response.status(200).entity(user).build();
     }
 
 

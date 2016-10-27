@@ -2,6 +2,7 @@ package edu.matc.persistence;
 
 import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,56 +16,91 @@ import static org.junit.Assert.*;
  */
 public class StorageSpaceDaoTest {
 
-    StorageSpaceDao storageSpaceDao;
-    StorageLocationDao storageLocationDao;
-    StorageLocation storageLocation;
-    StorageLocation storagelocationGet;
-    StorageSpace storageSpaceSetup;
-    StorageSpace storageSpaceSetup2;
-    int storageLocId;
-    List<StorageSpace> storageSpaceList;
-    List<StorageSpace> storageSpaceListAll;
+    private final Logger testingLog = Logger.getLogger("debugLogger");
+
+    private StorageLocationDao storageLocationDao;
+    private StorageSpaceDao storageSpaceDao;
+
+    private StorageLocation storageLocation;
+    private int storageLocId;
+
+    private StorageSpace storageSpaceGet;
+    private StorageSpace storageSpaceUpdate;
+    private StorageSpace storageSpaceDelete;
+
+    private int ssGetId;
+    private int ssUpdateId;
+    private int ssDeleteId;
+
+    private List<StorageSpace> storageSpaces;
+
 
     @Before
     public void setup() {
-
         storageSpaceDao = new StorageSpaceDao();
         storageLocationDao = new StorageLocationDao();
 
-        storageLocation = new StorageLocation("The storage location for the space", "355 Eagle ct", "Rolif", "IL", "63732", "ssTestLocation");
+        storageLocation = new StorageLocation("TestLoc for SS testing", "Address Tesing 124", "Verona", "WI", "43932", "Test SS SL Loc");
         storageLocId = storageLocationDao.addStorageLocation(storageLocation);
 
-        System.out.println("This is the storeloc ID" + storageLocId);
+        storageSpaceGet = new StorageSpace("SS Get Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);
+        storageSpaceUpdate = new StorageSpace("SS Update Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);
+        storageSpaceDelete = new StorageSpace("SS Delete Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);
 
-        storageSpaceSetup = new StorageSpace("Todd Test Space", "The space to add desc", "The type basement", Boolean.TRUE, 3, storageLocId);
-        storageSpaceSetup2 = new StorageSpace("Todd Test SpaceDelete", "The space to add desc", "The type basement", Boolean.TRUE, 3, storageLocId);
+        ssGetId = storageSpaceDao.addStorageSpaceToLocation(storageSpaceGet);
+        ssUpdateId = storageSpaceDao.addStorageSpaceToLocation(storageSpaceUpdate);
+        ssDeleteId = storageSpaceDao.addStorageSpaceToLocation(storageSpaceDelete);
 
-        storageSpaceDao.addStorageSpaceToLocation(storageSpaceSetup);
-        storageSpaceList = new ArrayList<StorageSpace>();
+        storageLocation = storageLocationDao.getStorageLocation(storageLocId);
 
     }
 
     @Test
     public void getAllStorageSpacesforLocation() throws Exception {
 
-        storagelocationGet = storageLocationDao.getStorageLocation(storageLocId);
-        storageSpaceList = storageSpaceDao.getAllStorageSpacesforLocation(storagelocationGet);
-        System.out.println("This is the storage space list: " + storageSpaceList);
-        System.out.println("This is the storage location list: " + storagelocationGet);
+        List<StorageSpace> storageSpaces = storageSpaceDao.getAllStorageSpacesforLocation(storageLocation);
+        testingLog.info("The storageSpaces for location: " + storageSpaces);
+        assertTrue("No storageSpaces added", storageSpaces.size() > 0);
 
     }
 
-    @Test
-    public void getAllStorageSpaces() throws Exception {
-
-
-
-    }
 
     @Test
     public void getOneStorageSpaceOfLoc() {
+        StorageSpace storageSpace = storageSpaceDao.getStorageSpaceForLocationSpaceId(ssGetId);
+        testingLog.info("The storage space by loc and ssid " + storageSpace);
 
+        assertNotNull("The storage space by sl and ssid didn't work", storageSpace);
+    }
+
+    @Test
+    public void addStorageSpaceTest() {
+        // addition happens in the setup() function and this confirms
+        assertNotNull("Storage space not added", ssGetId);
 
     }
+
+    @Test
+    public void updateStorageSpaceTest() {
+
+        storageSpaceUpdate.setSsDescription("Updated the description");
+        storageSpaceDao.updateStorageSpaceToLocation(storageSpaceUpdate);
+
+        StorageSpace storageSpaceUpCheck = storageSpaceDao.getStorageSpaceForLocationSpaceId(ssUpdateId);
+        String updatedDesc = storageSpaceUpCheck.getSsDescription();
+
+        testingLog.info("The updated desc: " + updatedDesc);
+        assertEquals("The update was not successful", "Updated the description", updatedDesc);
+
+    }
+
+    @Test
+    public void deleteStorageSpaceTest() {
+
+        int deletedSucInt = storageSpaceDao.deleteStorageSpaceFromLocation(ssDeleteId);
+        assertEquals("There was an error with deleting the ss", 1, deletedSucInt);
+
+    }
+
 
 }

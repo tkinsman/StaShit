@@ -1,4 +1,5 @@
 <%@include file="head.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <header>
@@ -46,6 +47,7 @@
     	</div><!-- /.navbar-collapse -->
     </nav>
         <h1>Welcome to StaShit</h1>
+        <h3>${addUserMessage}</h3>
         <div class="row marketing">
 
             <div class="col-lg-4">

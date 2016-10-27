@@ -27,7 +27,7 @@
     <div class="jumbotron">
         <h1>StaShit</h1>
         <p class="lead">Helping you with your storage needs.</p>
-        <p><a class="btn btn-lg btn-success" href="userHome.jsp" role="button">Sign up today</a></p>
+        <p><a class="btn btn-lg btn-success" href="signUp.jsp" role="button">Sign up today</a></p>
         <p><a href="loginForm.jsp">or login here</a></p>
     </div>
     <img src="images/StaShit_med.png" class="img-responsive" alt="Image">
