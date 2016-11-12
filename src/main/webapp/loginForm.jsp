@@ -51,7 +51,7 @@
                     </div>
                     <span class="help-block">Password error</span>
 
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
                 </form>
             </div>
         </div>
@@ -69,6 +69,6 @@
         </div>
     </div>
 
-
+    <%@include file="footer.jsp"%>
 
 </div>

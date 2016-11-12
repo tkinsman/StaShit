@@ -1,0 +1,49 @@
+.brickfolio {
+    font-size: 16px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    height: 200px;
+    /* The brickfolio container must have a width set and it is recommended to make the min-width the same as the item width. */
+    width: 100%;
+    min-width: 250px;
+}
+
+.brickfolio.bf-loaded { background: #fff; }
+
+.bf-item {
+    background-color: #FFF;
+    color: #333333;
+    -webkit-box-shadow: 0 3px 8px rgba(50, 50, 50, 0.50);
+    -moz-box-shadow: 0 3px 8px rgba(50, 50, 50, 0.50);
+    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.50);
+    /* The brickfolio item must have a width set. */
+    width: 250px;
+}
+
+.bf-item.bf-loaded { }
+
+.bf-item.bf-error { }
+
+.bf-item.blue { border: solid 4px #2074ff; }
+
+.bf-item.red { border: solid 4px #ff2f25; }
+
+.bf-item.green { border: solid 4px #62ff50; }
+
+.bf-item > img {
+    display: block;
+    margin: 0;
+}
+
+.bf-item > h4 {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: solid 3px #333333;
+    text-indent: 10px;
+}
+
+.bf-item > p {
+    font-size: 11px;
+    padding: 0 10px;
+}

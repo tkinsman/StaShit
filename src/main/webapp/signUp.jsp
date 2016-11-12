@@ -30,6 +30,10 @@
             padding: 40px 15px;
             text-align: center;
         }
+
+        h1 {
+            color: #5cb85c;
+        }
     </style>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,13 +53,13 @@
         <p class="lead">DO IT.<br> Squirrel wants it.</p>
     </div>
 
-    <form action="/signup" method="post" class="form-horizontal" role="form">
+    <form action="/adduser" method="post" class="form-horizontal" role="form">
         <div class="form-group">
             <legend>Register</legend>
         </div>
-        <div class="col-sm-12">
+        <div class="col-sm-8">
             <div class="row">
-                <div class="form-group">
+                <div class="col-sm-12 form-group">
                     <label>Username</label>
                     <input type="text" id="username" name="username" placeholder="Enter Username Here.." class="form-control">
                 </div>
@@ -104,13 +108,14 @@
             </div>
             <div class="col-sm-10 col-sm-offset-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="index.jsp"> <label>Cancel</label> </a>
+
             </div>
         </div>
 
     </form>
 
-    <p><a href="index.jsp">GO HOME</a></p>
-
+    <%@include file="footer.jsp"%>
 
 </div><!-- /.container -->
 
@@ -120,5 +125,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
+
 </html>
 

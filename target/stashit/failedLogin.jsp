@@ -11,6 +11,7 @@
     <title>Failed Login</title>
 </head>
 <body>
+<span class="label"><label>Failed Login, try again.</label></span>
 <p><a href="index.jsp">GO HOME</a></p>
 </body>
 </html>

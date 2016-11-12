@@ -1,7 +1,9 @@
 package edu.matc.controller;
 
+import edu.matc.entity.UserRoles;
 import edu.matc.persistence.SessionFactoryProvider;
 import edu.matc.persistence.UserDao;
+import edu.matc.persistence.UserRoleDao;
 import org.hibernate.Session;
 import javax.servlet.*;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +24,8 @@ import edu.matc.entity.User;
  * Created by toddkinsman on 10/23/16.
  */
 @WebServlet(
-        name = "signup",
-        urlPatterns = { "/signup" }
+        name = "adduser",
+        urlPatterns = { "/adduser" }
 )
 public class AddUser extends HttpServlet {
 
@@ -41,6 +43,8 @@ public class AddUser extends HttpServlet {
 
         ServletContext context = getServletContext();
         UserDao userDao = new UserDao();
+        UserRoleDao userRolesDao = new UserRoleDao();
+
 
         String username = request.getParameter("username");
         String firstName = request.getParameter("firstName");
@@ -60,20 +64,26 @@ public class AddUser extends HttpServlet {
 
         validData = validateUserData(username, firstName, lastName, address, city, state, zip, phoneNumber, emailAddress, validData);
         HttpSession session = request.getSession();
-
+        System.out.println("You're in addUser with valid data saying: " + validData);
         if (validData) {
 
             User user = new User(userType, username, firstName, lastName, password, address, city, 0, today);
+
             userIdAdded = userDao.addUser(user);
+            UserRoles userRoles = new UserRoles(username, userType);
+            userRolesDao.addUserRole(userRoles);
 
 
             session.setAttribute("newUser", user);
             session.setAttribute("addUserMessage", "Successfully added user");
+            session.setAttribute("username", username);
+
 
         } else {
 
 
             session.setAttribute("addUserMessage", "Did not add user, try again");
+
 
         }
 

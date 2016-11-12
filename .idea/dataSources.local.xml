@@ -9,7 +9,6 @@
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-scope>stashit:</introspection-scope>
       <resolve-scope>stashit:</resolve-scope>
     </data-source>
     <data-source name="MySQL - testStashit@localhost" uuid="a7b535fb-ab5e-46d7-adb8-cee6e96b3288">
@@ -20,7 +19,6 @@
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-scope>testStashit:</introspection-scope>
       <resolve-scope>testStashit:</resolve-scope>
     </data-source>
   </component>

@@ -16,9 +16,11 @@ public class UserRoles {
     @Column(name = "user_name")
     private String user_name;
 
-    @Id
     @Column(name = "role_name")
     private String role_name;
+
+    @Column(name = "user_role_id")
+    private int userRoleId;
 
     public UserRoles(String user_name, String role_name) {
         this.user_name = user_name;
@@ -39,5 +41,13 @@ public class UserRoles {
 
     public void setRole_name(String role_name) {
         this.role_name = role_name;
+    }
+
+    public int getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(int userRoleId) {
+        this.userRoleId = userRoleId;
     }
 }

@@ -17,11 +17,12 @@
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheets/landing.css" rel="stylesheet">
+    <link href="stylesheets/tileGrid.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
         body {
-            padding-top: 50px;
+            padding-top: 25px;
         }
 
         .starter-template {
@@ -29,6 +30,14 @@
             text-align: center;
         }
     </style>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/tileGrid"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -62,6 +62,10 @@ opacity:0.9;
     color: red;
 }
 
+button#submit {
+    background: #5cb85c;
+}
+
 
 @media (min-width: 768px) {
     .omb_login .omb_forgotPwd {
