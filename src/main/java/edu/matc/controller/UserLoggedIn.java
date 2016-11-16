@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
+//Todo remove password error from login jsp
 /**
  * Created by toddkinsman on 9/22/16.
  *

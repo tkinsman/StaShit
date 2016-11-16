@@ -26,6 +26,7 @@ public class UserDao {
         List<User> users = new ArrayList<User>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         users = session.createCriteria(User.class).list();
+        session.close();
         return users;
     }
 
@@ -39,6 +40,7 @@ public class UserDao {
         //TODO return a user for the given id
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         User user = (User) session.get(User.class, id);
+        session.close();
         return user;
     }
 
@@ -140,7 +142,13 @@ public class UserDao {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("lastName", lastName));
-        return criteria.list();
+
+        List<User> users = new ArrayList<>();
+        users = criteria.list();
+
+        session.close();
+
+        return users;
 
     }
 

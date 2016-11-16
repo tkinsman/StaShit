@@ -25,6 +25,7 @@ public class StorageLocationDao {
         List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         storageLocations = session.createCriteria(StorageLocation.class).list();
+        session.close();
         return storageLocations;
 
     }
@@ -32,6 +33,7 @@ public class StorageLocationDao {
     public StorageLocation getStorageLocation(int id) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         StorageLocation storageLocation = (StorageLocation) session.get(StorageLocation.class, id);
+        session.close();
         return storageLocation;
 
     }
@@ -59,7 +61,6 @@ public class StorageLocationDao {
         }
 
         int id = storageLocation.getStorageLocId();
-
         return id;
     }
 

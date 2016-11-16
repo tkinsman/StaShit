@@ -35,7 +35,7 @@
     			<button type="submit" class="btn btn-default">Submit</button>
     		</form>
     		<ul class="nav navbar-nav navbar-right">
-				<li><a href="/logout">Logout ${username}</a></li>
+				<li><a href="/stashit/logout">Logout ${username}</a></li>
     		</ul>
     	</div><!-- /.navbar-collapse -->
     </nav>

@@ -28,6 +28,7 @@ public class UserRoleDao {
         List<UserRoles> userRoles = new ArrayList<UserRoles>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         userRoles = session.createCriteria(UserRoles.class).list();
+        session.close();
         return userRoles;
     }
 

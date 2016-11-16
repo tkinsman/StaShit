@@ -53,7 +53,7 @@
         <p class="lead">DO IT.<br> Squirrel wants it.</p>
     </div>
 
-    <form action="/adduser" method="post" class="form-horizontal" role="form">
+    <form action="/stashit/adduser" method="post" class="form-horizontal" role="form">
         <div class="form-group">
             <legend>Register</legend>
         </div>

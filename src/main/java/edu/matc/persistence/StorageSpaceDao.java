@@ -21,7 +21,8 @@ public class StorageSpaceDao {
     private final Logger log = Logger.getLogger(this.getClass());
     private final Logger logHibr = Logger.getLogger("hibernateLogger");
 
-
+    //Todo change this to be a transaction
+    //Todo add flush to transaction as well
     /**
      * Return list of storage spaces given a location
      *
@@ -34,8 +35,7 @@ public class StorageSpaceDao {
         int storageLocId = storageLocation.getStorageLocId();
         storageSpaces = session.createSQLQuery("SELECT storage_space.storageSpaceId, storage_space.ssName, storage_space.ssType, storage_space.ssAvailability, storage_space.ssDescription, storage_space.ssRating, storage_space.storageLocationId FROM storage_space JOIN storage_location ON storage_space.storageLocationId = storage_location.storageLocationId WHERE storage_location.storageLocationId =" + storageLocId).addEntity(StorageSpace.class).list();
 
-        //todo remove this sout
-        System.out.println("this is the dao for ss: " + storageSpaces);
+        session.close();
         return storageSpaces;
 
     }
@@ -47,6 +47,7 @@ public class StorageSpaceDao {
         List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         storageSpace = (StorageSpace) session.get(StorageSpace.class, storageSpaceId);
+        session.close();
 
         return storageSpace;
 
@@ -117,7 +118,7 @@ public class StorageSpaceDao {
             StorageSpace storageSpace = (StorageSpace) session.load(StorageSpace.class, ssId);
             session.delete(storageSpace);
             session.getTransaction().commit();
-            //todo figure out how to use sucInt
+
             sucInt = 1;
         } catch (RuntimeException e) {
             if (trns != null) {
