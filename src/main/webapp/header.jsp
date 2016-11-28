@@ -7,5 +7,8 @@
 --%>
 <!DOCTYPE html>
 <header>
-    <h4>StaShit This is the header template </h4>
+    <h4><i>StaShit This is the header template, to be removed</i> </h4>
+    <div class="page-header">
+        <img src="images/StaShit_med.png" alt="squirrel" class="img-responsive center-block" />
+    </div>
 </header>
