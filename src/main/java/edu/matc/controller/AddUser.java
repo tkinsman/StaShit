@@ -99,6 +99,7 @@ public class AddUser extends HttpServlet {
 
     }
 
+    //Todo add better validation and take out prints!!
     private boolean validateUserData(String username, String firstName, String lastName,
                                      String address, String city, String state,
                                      String zip, String phoneNumber, String email, Boolean validData) {

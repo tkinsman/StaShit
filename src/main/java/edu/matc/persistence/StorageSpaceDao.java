@@ -53,6 +53,18 @@ public class StorageSpaceDao {
 
     }
 
+    //Todo add tests for this
+    public List<StorageSpace> getStorageSpacesForUserid(int storageLocId) {
+
+        List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        storageSpaces = session.createSQLQuery("SELECT storage_space.storageSpaceId, storage_space.ssName, storage_space.ssType, storage_space.ssAvailability, storage_space.ssDescription, storage_space.ssRating, storage_space.storageLocationId FROM storage_space JOIN storage_location ON storage_space.storageLocationId = storage_location.storageLocationId WHERE storage_location.storageLocationId =" + storageLocId).addEntity(StorageSpace.class).list();
+
+        session.close();
+        return storageSpaces;
+
+    }
+
 
     public int addStorageSpaceToLocation(StorageSpace storageSpace) {
 

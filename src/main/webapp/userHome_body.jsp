@@ -1,23 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">StaShit</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="/stashit/logout">Logout ${username}</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
+<%@include file="navBar.jsp"%>
 
 <div class="container">
 
@@ -27,28 +8,12 @@
     </div>
 
     <div class="col-lg-12">
-        <h4>Storage Locations Near You</h4>
+
+        <h2 class="page-header">Storage Locations Near You</h2>
+
+        <%--Div to append the google map--%>
         <div id="map" style="width:100%;height:300px"></div>
-        <p>Put your the extra storage space in your garage, attic, or basement to work!</p>
 
-        <script>
-            function myMap() {
-                var myCenter = new google.maps.LatLng(43.0731,-89.4012);
-                var mapCanvas = document.getElementById("map");
-                var mapOptions = {center: myCenter, zoom: 5};
-                var map = new google.maps.Map(mapCanvas, mapOptions);
-                var marker = new google.maps.Marker({position:myCenter});
-                marker.setMap(map);
-
-                var infowindow = new google.maps.InfoWindow({
-                    content: "Store Things Here!"
-                });
-
-                infowindow.open(map,marker);
-            }
-        </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 
     </div>
 </div>
@@ -57,8 +22,24 @@
     <div class="row">
         <div class="col-lg-12">
 
-            <div class="col-lg-12">
-                <h1 class="page-header">Find Locations</h1>
+            <div class="col-lg-12" style="padding: 2%;">
+
+                <h2 class="page-header">Find Locations</h2>
+
+                <div class="form-group">
+                    <label for="storageSearch" class="col-sm-2 control-label">Search: </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="storageSearch" placeholder="search for storage...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Find Space</button>
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="col-lg-12" style="height:250px; overflow-y:scroll; background:lightgray; padding-top: 1%">
@@ -115,52 +96,136 @@
         <div class="col-lg-12">
 
             <div class="col-lg-12">
-                <h1 class="page-header">Your Locs</h1>
+                <h2 class="page-header">Your Locs</h2>
+
+
+                <p class="navbar-text pull-right">
+                    <a href="addLocation.jsp" class="navbar-link">Add New Storage</a>
+                </p>
             </div>
 
             <div class="col-lg-12" style="height:250px; overflow-y:scroll; background:lightgray; padding-top: 1%">
+                <c:forEach var="space" items="${storageSpaces}">
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    </a>
-                    <p>Basement</p>
-                </div>
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail" href="#">
+                            <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                        </a>
+                        <p>${space.ssName}</p>
+                        <p>${space.ssType}</p>
+                    </div>
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    </a>
-                    <p>Attic</p>
-                </div>
+                </c:forEach>
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    </a>
-                    <p>Garage</p>
-                </div>
+                <%--<c:choose>--%>
+                    <%--<c:when test="${TRUE}" >--%>
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    </a>
-                    <p>Basement</p>
-                </div>
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    </a>
-                    <p>Attic</p>
-                </div>
+                            <%--<c:forEach var="space" items="${storageSpaces}">--%>
 
-                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                    <a class="thumbnail" href="#">
-                        <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    </a>
-                    <p>Garage</p>
-                </div>
+                                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                                    <%--<a class="thumbnail" href="#">--%>
+                                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                                    <%--</a>--%>
+                                    <%--<p>${space.ssName}</p>--%>
+                                    <%--<p>${space.ssType}</p>--%>
+                                <%--</div>--%>
+
+                            <%--</c:forEach>--%>
+
+                    <%--</c:when>--%>
+
+                    <%--<c:otherwise>--%>
+
+                        <%--<h3>Didn't work loading</h3>--%>
+
+                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                        <%--<a class="thumbnail" href="#">--%>
+                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                        <%--</a>--%>
+                        <%--<p>Basement</p>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                        <%--<a class="thumbnail" href="#">--%>
+                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                        <%--</a>--%>
+                        <%--<p>Attic</p>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                        <%--<a class="thumbnail" href="#">--%>
+                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                        <%--</a>--%>
+                        <%--<p>Garage</p>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                        <%--<a class="thumbnail" href="#">--%>
+                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                        <%--</a>--%>
+                        <%--<p>Basement</p>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                        <%--<a class="thumbnail" href="#">--%>
+                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                        <%--</a>--%>
+                        <%--<p>Attic</p>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                        <%--<a class="thumbnail" href="#">--%>
+                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                        <%--</a>--%>
+                        <%--<p>Garage</p>--%>
+                    <%--</div>--%>
+
+                    <%--</c:otherwise>--%>
+
+                <%--</c:choose>--%>
+
+                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                    <%--<a class="thumbnail" href="#">--%>
+                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                    <%--</a>--%>
+                    <%--<p>Basement</p>--%>
+                <%--</div>--%>
+
+                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                    <%--<a class="thumbnail" href="#">--%>
+                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                    <%--</a>--%>
+                    <%--<p>Attic</p>--%>
+                <%--</div>--%>
+
+                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                    <%--<a class="thumbnail" href="#">--%>
+                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                    <%--</a>--%>
+                    <%--<p>Garage</p>--%>
+                <%--</div>--%>
+
+                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                    <%--<a class="thumbnail" href="#">--%>
+                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                    <%--</a>--%>
+                    <%--<p>Basement</p>--%>
+                <%--</div>--%>
+
+                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                    <%--<a class="thumbnail" href="#">--%>
+                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                    <%--</a>--%>
+                    <%--<p>Attic</p>--%>
+                <%--</div>--%>
+
+                <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
+                    <%--<a class="thumbnail" href="#">--%>
+                        <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
+                    <%--</a>--%>
+                    <%--<p>Garage</p>--%>
+                <%--</div>--%>
 
             </div>
 
