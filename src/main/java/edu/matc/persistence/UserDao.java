@@ -152,4 +152,35 @@ public class UserDao {
 
     }
 
+    /** Retrieve users by username
+     *
+     * @param userName User's last name which is the search criteria
+     * @return User
+     */
+    public List<User> getUsersByUserName(String userName) {
+
+        List<User> users = new ArrayList<User>();
+        Transaction trns = null;
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+
+        try {
+            trns = session.beginTransaction();
+            Criteria criteria = session.createCriteria(User.class);
+            criteria.add(Restrictions.eq("userName", userName));
+            users = criteria.list();
+        } catch (RuntimeException e) {
+            if (trns != null) {
+                trns.rollback();
+            }
+            e.printStackTrace();
+            log.info("The runtime exception to update user: " + e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+
+        return users;
+
+    }
+
 }

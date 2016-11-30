@@ -64,25 +64,30 @@ public class StorageLocationDao {
         return id;
     }
 
-    public void updateStorageLocation(StorageLocation storageLocation) {
+    public int updateStorageLocation(StorageLocation storageLocation) {
 
         Transaction trns = null;
+        int sucInt;
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
 
         try {
             trns = session.beginTransaction();
             session.update(storageLocation);
             session.getTransaction().commit();
+            sucInt = 1;
         } catch (RuntimeException e) {
             if (trns != null) {
                 trns.rollback();
             }
+            sucInt = 0;
             e.printStackTrace();
             log.info("The runtime exception to update storage location: " + e);
         } finally {
             session.flush();
             session.close();
         }
+
+        return sucInt;
 
     }
 

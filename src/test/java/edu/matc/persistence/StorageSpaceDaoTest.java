@@ -3,6 +3,7 @@ package edu.matc.persistence;
 import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,7 @@ public class StorageSpaceDaoTest {
 
     private StorageLocationDao storageLocationDao;
     private StorageSpaceDao storageSpaceDao;
+    private DatabaseSetupDao databaseSetupDao;
 
     private StorageLocation storageLocation;
     private int storageLocId;
@@ -39,6 +41,10 @@ public class StorageSpaceDaoTest {
     public void setup() {
         storageSpaceDao = new StorageSpaceDao();
         storageLocationDao = new StorageLocationDao();
+        databaseSetupDao = new DatabaseSetupDao();
+
+        databaseSetupDao.clearAllDataFromStorageSpace();
+        databaseSetupDao.clearAllDataFromStorageLocation();
 
         storageLocation = new StorageLocation("TestLoc for SS testing", "Address Tesing 124", "Verona", "WI", "43932", "Test SS SL Loc");
         storageLocId = storageLocationDao.addStorageLocation(storageLocation);
@@ -53,6 +59,13 @@ public class StorageSpaceDaoTest {
 
         storageLocation = storageLocationDao.getStorageLocation(storageLocId);
 
+    }
+
+    @After
+    public void databaseCleanup() {
+
+        databaseSetupDao.clearAllDataFromStorageLocation();
+        databaseSetupDao.clearAllDataFromStorageSpace();
     }
 
     @Test

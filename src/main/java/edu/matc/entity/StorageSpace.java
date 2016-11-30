@@ -8,8 +8,8 @@ import javax.persistence.*;
  * Created by toddkinsman on 9/22/16.
  */
 
-@Entity
-@Table(name = "storage_space")
+@Table
+@Entity(name = "storage_space")
 public class StorageSpace {
 
     @Id

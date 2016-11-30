@@ -1,6 +1,8 @@
 package edu.matc.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Tables;
+
 import javax.persistence.*;
 
 /**
@@ -8,8 +10,8 @@ import javax.persistence.*;
  */
 
 
-@Entity
-@Table(name = "storage_location")
+@Table
+@Entity(name = "storage_location")
 public class StorageLocation {
 
 

@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import edu.matc.entity.User;
 
@@ -30,6 +32,7 @@ import edu.matc.entity.User;
 )
 public class AddUser extends HttpServlet {
 
+    UserDao userDao = new UserDao();
 
     /**
      *  Handles HTTP POST requests from signup form.
@@ -43,7 +46,6 @@ public class AddUser extends HttpServlet {
             throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-        UserDao userDao = new UserDao();
         UserRoleDao userRolesDao = new UserRoleDao();
 
 
@@ -61,12 +63,14 @@ public class AddUser extends HttpServlet {
         String userType = "registered-user";
         LocalDate today = LocalDate.now();
         boolean validData = true;
+        boolean uniqueUsername = isUserNameUnique(username);
+
         int userIdAdded = 0;
 
         validData = validateUserData(username, firstName, lastName, address, city, state, zip, phoneNumber, emailAddress, validData);
         HttpSession session = request.getSession();
         System.out.println("You're in addUser with valid data saying: " + validData);
-        if (validData) {
+        if (validData && uniqueUsername) {
 
             User user = new User(userType, username, firstName, lastName, password, address, city, 0, today);
 
@@ -153,6 +157,23 @@ public class AddUser extends HttpServlet {
 
         return validData;
 
+    }
+
+    //Todo move this to the bean or a separate user validation class (ask about best practice)
+    private Boolean isUserNameUnique(String userName) {
+
+        List<User> userList = new ArrayList<User>();
+        userList = userDao.getUsersByUserName(userName);
+        Boolean uniqueName;
+
+        if (userList.size() > 0) {
+
+            uniqueName = false;
+        } else {
+            uniqueName = true;
+        }
+
+        return uniqueName;
     }
 
 }

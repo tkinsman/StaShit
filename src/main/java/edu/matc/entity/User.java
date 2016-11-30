@@ -1,8 +1,10 @@
 package edu.matc.entity;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.*;
 import edu.matc.util.LocalDateAttributeConverter;
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 
@@ -10,8 +12,8 @@ import java.time.LocalDate;
  * Created by toddkinsman on 9/21/16.
  */
 
-@Entity
-@Table(name = "users")
+@Table
+@Entity(name = "users")
 public class User {
 
     @Id

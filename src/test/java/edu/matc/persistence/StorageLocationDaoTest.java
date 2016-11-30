@@ -16,47 +16,86 @@ import static org.junit.Assert.*;
 public class StorageLocationDaoTest {
 
     StorageLocationDao storageLocDao;
-    StorageLocation storageLocation;
-    StorageLocation setupStorageLoc;
+    StorageLocation addLoc;
+    StorageLocation updateLoc;
+    StorageLocation delLoc;
+    StorageLocation getLoc;
+
+    int updateId;
+    int addId;
+    int delId;
+    int getId;
+
+    DatabaseSetupDao databaseSetupDao;
 
     private final Logger logDebug = Logger.getLogger("debugLogger");
     private final Logger log = Logger.getLogger(this.getClass());
 
     @Before
     public void setup() {
+        databaseSetupDao = new DatabaseSetupDao();
+        databaseSetupDao.clearAllDataFromStorageLocation();
+
         storageLocDao = new StorageLocationDao();
-        setupStorageLoc = new StorageLocation("The desci", "The Address", "Madison City", "The WI", "53811", "Home Loc Test");
-//        storageLocDao.addStorageLocation(setupStorageLoc);
+
+
+        getLoc = new StorageLocation("The desc of get", "The Address", "Madison City", "The WI", "53811", "GetTest");
+        addLoc = new StorageLocation("The desc of add", "The Address", "Madison City", "The WI", "53811", "AddTest");
+        delLoc = new StorageLocation("The desc of del", "The Address", "Madison City", "The WI", "53811", "DelTest");
+        updateLoc = new StorageLocation("The desc of update", "The Address", "Madison City", "The WI", "53811", "UpdateTest");
+
+        addId = storageLocDao.addStorageLocation(addLoc);
+        getId = storageLocDao.addStorageLocation(getLoc);
+        updateId = storageLocDao.addStorageLocation(updateLoc);
+        delId = storageLocDao.addStorageLocation(delLoc);
 
     }
 
 
     @Test
     public void getAllStorageLocations() throws Exception {
-        List<StorageLocation> storageLocations = storageLocDao.getAllStorageLocations();
-//        assertTrue(storageLocations.size() > 0);
-        log.info("this is the get all storage locs test" + storageLocations);
+
+        List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
+        storageLocations = storageLocDao.getAllStorageLocations();
+        assertTrue("Did not get all storage locations for get all test", storageLocations.size() > 0);
     }
 
-//    @Test
-//    public void getAllStorageSpace() {
-//        storageLocDao.addStorageLocation(setupStorageLoc);
-//        storageLocation = storageLocDao.getStorageLocation(0);
-//
-//        List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
-//        storageSpaces = storageLocDao.getAllStorageSpacesforLocation(storageLocation);
-//
-//        //Todo take out print
-//        System.out.println("This is the storage spaces array: " + storageSpaces);
-//
-//    }
+    @Test
+    public void getOneStorageLocTest() {
+
+        StorageLocation storageLocation = new StorageLocation();
+        storageLocation = storageLocDao.getStorageLocation(getId);
+        String gotName = storageLocation.getStoLocName();
+
+        assertEquals("Get one storage location by id failed", "GetTest", gotName);
+    }
 
     @Test
-    public void testAddNewStorageLocation() {
-        StorageLocation locToAdd = new StorageLocation("This is loc desc", "my adddy", "Madison", "WI", "53718", "HOME Store");
-        storageLocDao.addStorageLocation(locToAdd);
+    public void addStorageLocTest() {
 
+        assertNotNull("Add storage location failed",addId);
+
+    }
+
+
+
+    @Test
+    public void updateStorageLocTest() {
+        StorageLocation storageLocation = new StorageLocation();
+        storageLocation = storageLocDao.getStorageLocation(updateId);
+        String changeToTheName = "NowUpdatedTest";
+        storageLocation.setStoLocName(changeToTheName);
+        int sucInt = storageLocDao.updateStorageLocation(storageLocation);
+
+        assertEquals("The update storage loc was not successful", 1, sucInt);
         logDebug.info("This is the debug logger");
+    }
+
+    @Test
+    public void deleteLocationTest() {
+
+        int sucInt = storageLocDao.deleteStorageLocation(delId);
+        assertEquals("Failed to delete storage location test", 1, sucInt);
     }
 
 }
