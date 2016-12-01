@@ -26,11 +26,11 @@ public class StorageLocationTest {
     @Before
     public void setup() {
         storageLocationDao = new StorageLocationDao();
-        storageLocationById = new StorageLocation("Getting one location test", "1234 get one", "Madison", "WI", "45330", "Get One SL");
+        storageLocationById = new StorageLocation("Getting one location test", "1234 get one", "Madison", "WI", "45330", "Get One SL", "toddName");
         storageLocGetId = storageLocationDao.addStorageLocation(storageLocationById);
-        storageLocationUpdate = new StorageLocation("Update location test", "1234 update one", "Madison", "WI", "45330", "Update SL");
+        storageLocationUpdate = new StorageLocation("Update location test", "1234 update one", "Madison", "WI", "45330", "Update SL", "toddName");
         storageLocUpdateId = storageLocationDao.addStorageLocation(storageLocationUpdate);
-        storageLocationDelete = new StorageLocation("Delete location test", "1234 delete one", "Madison", "WI", "11111", "Delete SL");
+        storageLocationDelete = new StorageLocation("Delete location test", "1234 delete one", "Madison", "WI", "11111", "Delete SL", "toddName");
         storageLocDeleteId = storageLocationDao.addStorageLocation(storageLocationDelete);
     }
 

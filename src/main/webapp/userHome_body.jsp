@@ -100,7 +100,7 @@
 
 
                 <p class="navbar-text pull-right">
-                    <a href="addLocation.jsp" class="navbar-link">Add New Storage</a>
+                    <a href="addStorageSpace.jsp" class="navbar-link">Add New Storage</a>
                 </p>
             </div>
 

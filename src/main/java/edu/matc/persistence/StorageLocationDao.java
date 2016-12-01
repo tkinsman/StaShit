@@ -2,10 +2,13 @@ package edu.matc.persistence;
 
 import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
+import edu.matc.entity.User;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.common.util.impl.Log;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.*;
 import java.util.ArrayList;
@@ -119,6 +122,30 @@ public class StorageLocationDao {
 
     }
 
+    public List<StorageLocation> getStorageLocationsByUserName(String username) {
+
+        List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
+        Transaction trns = null;
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+
+        try {
+            trns = session.beginTransaction();
+            Criteria criteria = session.createCriteria(StorageLocation.class);
+            criteria.add(Restrictions.eq("userName", username));
+            storageLocations = criteria.list();
+        } catch (RuntimeException e) {
+            if (trns != null) {
+                trns.rollback();
+            }
+            e.printStackTrace();
+            log.info("The runtime exception to storage location by user: " + e);
+        } finally {
+            session.flush();
+            session.close();
+        }
+
+        return storageLocations;
+    }
 
 
 

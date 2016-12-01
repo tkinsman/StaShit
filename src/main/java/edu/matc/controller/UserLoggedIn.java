@@ -3,8 +3,10 @@ package edu.matc.controller;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
+import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
 import edu.matc.entity.User;
+import edu.matc.persistence.StorageLocationDao;
 import edu.matc.persistence.StorageSpaceDao;
 import edu.matc.persistence.UserDao;
 
@@ -32,6 +34,7 @@ public class UserLoggedIn extends HttpServlet {
 
     private List<StorageSpace> storageSpaces;
     private StorageSpaceDao storageSpaceDao;
+    private StorageLocationDao storageLocationDao;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -84,6 +87,18 @@ public class UserLoggedIn extends HttpServlet {
         storageSpaces = storageSpaceDao.getStorageSpacesForUserid(userId);
 
         return storageSpaces;
+
+    }
+
+    public List<StorageLocation> getStorageLocations(int userId) {
+
+         storageLocationDao = new StorageLocationDao();
+        List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
+
+        //// TODO: 11/29/16 fixe the name of method
+        storageLocations = storageLocationDao.getAllStorageLocations();
+
+        return storageLocations;
 
     }
 }

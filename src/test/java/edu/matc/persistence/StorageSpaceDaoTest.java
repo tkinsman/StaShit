@@ -46,7 +46,7 @@ public class StorageSpaceDaoTest {
         databaseSetupDao.clearAllDataFromStorageSpace();
         databaseSetupDao.clearAllDataFromStorageLocation();
 
-        storageLocation = new StorageLocation("TestLoc for SS testing", "Address Tesing 124", "Verona", "WI", "43932", "Test SS SL Loc");
+        storageLocation = new StorageLocation("TestLoc for SS testing", "Address Tesing 124", "Verona", "WI", "43932", "Test SS SL Loc", "toddName");
         storageLocId = storageLocationDao.addStorageLocation(storageLocation);
 
         storageSpaceGet = new StorageSpace("SS Get Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);

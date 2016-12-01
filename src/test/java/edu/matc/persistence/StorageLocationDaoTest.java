@@ -39,10 +39,10 @@ public class StorageLocationDaoTest {
         storageLocDao = new StorageLocationDao();
 
 
-        getLoc = new StorageLocation("The desc of get", "The Address", "Madison City", "The WI", "53811", "GetTest");
-        addLoc = new StorageLocation("The desc of add", "The Address", "Madison City", "The WI", "53811", "AddTest");
-        delLoc = new StorageLocation("The desc of del", "The Address", "Madison City", "The WI", "53811", "DelTest");
-        updateLoc = new StorageLocation("The desc of update", "The Address", "Madison City", "The WI", "53811", "UpdateTest");
+        getLoc = new StorageLocation("The desc of get", "The Address", "Madison City", "The WI", "53811", "GetTest", "toddName");
+        addLoc = new StorageLocation("The desc of add", "The Address", "Madison City", "The WI", "53811", "AddTest", "toddName");
+        delLoc = new StorageLocation("The desc of del", "The Address", "Madison City", "The WI", "53811", "DelTest", "toddName");
+        updateLoc = new StorageLocation("The desc of update", "The Address", "Madison City", "The WI", "53811", "UpdateTest", "toddName");
 
         addId = storageLocDao.addStorageLocation(addLoc);
         getId = storageLocDao.addStorageLocation(getLoc);

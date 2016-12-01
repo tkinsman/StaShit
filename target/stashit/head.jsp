@@ -21,6 +21,7 @@
     <link href="stylesheets/landing.css" rel="stylesheet">
     <link href="stylesheets/template.css" rel="stylesheet">
     <link href="stylesheets/tileGrid.css" rel="stylesheet">
+    <link href="stylesheets/signup.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>

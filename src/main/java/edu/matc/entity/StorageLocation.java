@@ -39,16 +39,20 @@ public class StorageLocation {
     @Column(name = "locName")
     private String stoLocName;
 
+    @Column(name = "userName")
+    private String userName;
+
     public StorageLocation() {
     }
 
-    public StorageLocation(String stoLocDescription, String stoLocAddress, String city, String stoLocState, String stoLocZip, String stoLocName) {
+    public StorageLocation(String stoLocDescription, String stoLocAddress, String city, String stoLocState, String stoLocZip, String stoLocName, String userName) {
         this.stoLocDescription = stoLocDescription;
         this.stoLocAddress = stoLocAddress;
         this.city = city;
         this.stoLocState = stoLocState;
         this.stoLocZip = stoLocZip;
         this.stoLocName = stoLocName;
+        this.userName = userName;
     }
 
     public int getStorageLocId() {
@@ -107,5 +111,11 @@ public class StorageLocation {
         this.stoLocName = stoLocName;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

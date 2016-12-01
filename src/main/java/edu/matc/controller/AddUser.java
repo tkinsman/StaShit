@@ -47,7 +47,7 @@ public class AddUser extends HttpServlet {
 
         ServletContext context = getServletContext();
         UserRoleDao userRolesDao = new UserRoleDao();
-
+        String url;
 
         String username = request.getParameter("username");
         String firstName = request.getParameter("firstName");
@@ -69,7 +69,7 @@ public class AddUser extends HttpServlet {
 
         validData = validateUserData(username, firstName, lastName, address, city, state, zip, phoneNumber, emailAddress, validData);
         HttpSession session = request.getSession();
-        System.out.println("You're in addUser with valid data saying: " + validData);
+
         if (validData && uniqueUsername) {
 
             User user = new User(userType, username, firstName, lastName, password, address, city, 0, today);
@@ -83,16 +83,17 @@ public class AddUser extends HttpServlet {
             session.setAttribute("addUserMessage", "Successfully added user");
             session.setAttribute("username", username);
 
+            url = "/userHome.jsp";
 
         } else {
 
 
             session.setAttribute("addUserMessage", "Did not add user, try again");
-
+            url = "/signUp.jsp";
 
         }
 
-        String url = "/userHome.jsp";
+
 
         RequestDispatcher dispatcher =
                 getServletContext().getRequestDispatcher(url);
