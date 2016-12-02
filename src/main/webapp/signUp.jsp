@@ -9,16 +9,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
-    <%@include file="head.jsp"%>
-    <%@include file="header.jsp"%>
+
+<%@include file="navBar_signup.jsp"%>
 
     <div class="container">
 
+        <%@include file="head.jsp"%>
+
         <body>
 
-            <%@include file="navBar_signup.jsp"%>
-            <%@include file="signUp_form.jsp"%>
 
+
+            <%@include file="signUp_form.jsp"%>
+            <img src="images/StaShit_header.png" class="img-responsive" alt="Image">
         </body>
 
         <%@include file="footer.jsp"%>

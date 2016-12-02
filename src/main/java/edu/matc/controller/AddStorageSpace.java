@@ -13,7 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by toddkinsman on 9/22/16.
@@ -25,18 +27,20 @@ import java.io.IOException;
 )
 public class AddStorageSpace extends HttpServlet {
 
+    StorageSpaceDao storageSpaceDao;
+    List<StorageSpace> storageSpaceList;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-        StorageSpaceDao storageSpaceDao = new StorageSpaceDao();
-        StorageLocation storageLocation = new StorageLocation();
+        HttpSession session = req.getSession();
+        storageSpaceDao = new StorageSpaceDao();
         String url;
 
         String ssName = req.getParameter("ssName");
         String ssDescription = req.getParameter("ssDescription");
         String ssType = req.getParameter("ssType");
-        int storageLocId = Integer.parseInt(req.getParameter("storageLocationId"));
+        int storageLocId = Integer.parseInt(req.getParameter("storageLocId"));
         String username = req.getRemoteUser();
 
 
@@ -44,6 +48,8 @@ public class AddStorageSpace extends HttpServlet {
 
         // TODO: 11/30/16 add validation to the form
         storageSpaceDao.addStorageSpaceToLocation(storageSpace);
+        storageSpaceList = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
+        session.setAttribute("storageSpaces", storageSpaceList);
 
 
         url = "/userHome.jsp";

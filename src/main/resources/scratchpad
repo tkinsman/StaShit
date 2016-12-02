@@ -1,0 +1,10 @@
+Code Review Comments:
+
+Todd's
+- Refactor directory structure for included partial jsp files to make look cleaner
+- need to add validation for adding location and spaces
+- need to add views and controllers for views of single space and single locations
+
+
+Code Reviewer
+-

@@ -5,10 +5,7 @@ import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
 import edu.matc.entity.User;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +146,51 @@ public class StorageSpaceDao {
         return sucInt;
 
     }
+
+
+    public List<StorageSpace> getAllRelatedStorageSpacesForUser(String username) {
+
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        StorageLocationDao storageLocationDao = new StorageLocationDao();
+        List storageLocationIds = new ArrayList();
+        storageLocationIds = storageLocationDao.getStorageLocationIdsForUser(username);
+        StorageSpaceDao categoryDao = new StorageSpaceDao();
+        List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
+        Transaction trns = null;
+
+        try {
+
+            trns = session.beginTransaction();
+            Criteria criteria = session.createCriteria(StorageSpace.class);
+            criteria.add(Restrictions.in("storageLocationId", storageLocationIds));
+            storageSpaces = criteria.list();
+            session.getTransaction().commit();
+
+
+        } catch (RuntimeException e) {
+            if (trns != null) {
+                trns.rollback();
+            }
+            log.info("There was a runtime exception getting storage spaces related to storage loc ids" + e);
+
+        } finally {
+            session.flush();
+            session.close();
+        }
+
+        return storageSpaces;
+
+
+
+    }
+
+//    public List<UserBills> searchInUserBills(List<Integer> bs) {
+//        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+//        Criteria criteria = session.createCriteria(UserBills.class);
+//        criteria.add(Restrictions.in("bill_id", bs));
+//        List<UserBills> returnList = criteria.list();
+//        return returnList;
+//    }
 
 
 }

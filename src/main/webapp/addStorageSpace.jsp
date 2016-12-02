@@ -10,7 +10,7 @@
 
 <html lang="en">
 
-<% pageContext.setAttribute("title", "StaShit Home"); %>
+<% pageContext.setAttribute("title", "Add Storage Space"); %>
 <%@include file="head.jsp"%>
 <%@include file="header.jsp"%>
 

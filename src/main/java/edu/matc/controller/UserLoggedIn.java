@@ -9,6 +9,7 @@ import edu.matc.entity.User;
 import edu.matc.persistence.StorageLocationDao;
 import edu.matc.persistence.StorageSpaceDao;
 import edu.matc.persistence.UserDao;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,40 +33,29 @@ import java.util.List;
 )
 public class UserLoggedIn extends HttpServlet {
 
+    private final Logger log = Logger.getLogger(this.getClass());
     private List<StorageSpace> storageSpaces;
+    private List<StorageLocation> storageLocations;
     private StorageSpaceDao storageSpaceDao;
     private StorageLocationDao storageLocationDao;
 
-    @Override
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doGet(req, resp);
-
-
-        //Todo Remove this geocoding since have class to do this.
-//        GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyB9dsnXqaTcY_9tp28DsNgSZ355jmMi2R4");
-//        GeocodingResult[] results = new GeocodingResult[0];
-//        try {
-//            results = GeocodingApi.geocode(context,
-//                    "1600 Amphitheatre Parkway Mountain View, CA 94043").await();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
-        //todo remove this print
-//        System.out.println(results[0].formattedAddress);
 
 
         HttpSession session = req.getSession();
         String sessionId = session.getId();
 
         String username = req.getRemoteUser();
+        storageLocations = getStorageLocations(username);
 
         session.setAttribute("username", username);
         session.setAttribute("addUserMessage", "Successfully logged in");
+        session.setAttribute("storageLocations", storageLocations);
 
 
 //        //Todo get user location from user
-        storageSpaces = getStorageSpaces(278);
+        storageSpaces = getStorageSpaces(username);
         session.setAttribute("storageSpaces", storageSpaces);
 
         String url = "/userHome.jsp";
@@ -78,25 +68,25 @@ public class UserLoggedIn extends HttpServlet {
 
     }
 
-    public List<StorageSpace> getStorageSpaces(int userId) {
+    public List<StorageSpace> getStorageSpaces(String username) {
 
         storageSpaceDao = new StorageSpaceDao();
         List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
 
-        //// TODO: 11/29/16 fixe the name of method
-        storageSpaces = storageSpaceDao.getStorageSpacesForUserid(userId);
+        //// TODO: 11/29/16 fix the name of method
+        storageSpaces = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
 
         return storageSpaces;
 
     }
 
-    public List<StorageLocation> getStorageLocations(int userId) {
+    public List<StorageLocation> getStorageLocations(String username) {
 
          storageLocationDao = new StorageLocationDao();
         List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
 
         //// TODO: 11/29/16 fixe the name of method
-        storageLocations = storageLocationDao.getAllStorageLocations();
+        storageLocations = storageLocationDao.getStorageLocationsByUserName(username);
 
         return storageLocations;
 

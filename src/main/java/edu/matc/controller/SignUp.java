@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -21,6 +22,9 @@ public class SignUp extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String url = "/signUp.jsp";
+
+        HttpSession session = req.getSession();
+        session.setAttribute("formMessage", "Sign Up User");
 
         RequestDispatcher dispatcher =
                 getServletContext().getRequestDispatcher(url);

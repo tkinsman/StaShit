@@ -5,6 +5,7 @@ import edu.matc.entity.StorageSpace;
 import edu.matc.entity.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.common.util.impl.Log;
@@ -147,6 +148,36 @@ public class StorageLocationDao {
         return storageLocations;
     }
 
+    public List getStorageLocationIdsForUser(String username) {
+
+        List storageLocatIds = new ArrayList();
+        Session session = SessionFactoryProvider.getSessionFactory().openSession();
+        Transaction trns = null;
+
+        try {
+
+            trns = session.beginTransaction();
+            String hql = "SELECT storageLocId FROM storage_location sl WHERE sl.userName = :username";
+            Query query = session.createQuery(hql);
+            query.setString("username",username);
+            storageLocatIds = query.list();
+            session.getTransaction().commit();
+
+
+        } catch (RuntimeException e) {
+            if (trns != null) {
+                trns.rollback();
+            }
+            log.info("There was a runtime exception to get storageLocIds from username: " + e);
+
+        } finally {
+            session.flush();
+            session.close();
+        }
+
+        return storageLocatIds;
+
+    }
 
 
 }

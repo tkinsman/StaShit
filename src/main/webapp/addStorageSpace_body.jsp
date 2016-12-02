@@ -5,9 +5,9 @@
   Time: 11:18 AM
   To change this template use File | Settings | File Templates.
 --%>
-<form action="/addspace" method="post" role="form">
-	<legend>Add New Storage Space</legend>
+<form action="/stashit/addspace" method="post" role="form">
 
+	<legend>Add New Storage Space</legend>
 	<div class="form-group">
 		<label for="ssName">Storage Space Name</label>
 		<input type="text" class="form-control" name="ssName" id="ssName" placeholder="Input...">
@@ -30,11 +30,11 @@
     </div>
 
     <div class="form-group">
-        <label for="storageLocationId">Storage Location</label>
+        <label for="storageLocId">Storage Location</label>
 
         <%--todo need to update with locaiton jsp--%>
         <a href="">Add Location</a>
-        <select name="storageLocation" id="storageLocationId" class="form-control">
+        <select name="storageLocId" id="storageLocId" class="form-control">
             <c:forEach var="location" items="${storageLocations}">
                 <option value="${location.storageLocId}">${location.stoLocName}</option>
             </c:forEach>

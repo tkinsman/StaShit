@@ -28,10 +28,6 @@ public class DatabaseSetupDao {
 
         try {
 
-//            trns = session.beginTransaction();
-//            String hql = "DELETE FROM users";
-//            Query query = session.createQuery(hql);
-//            session.getTransaction().commit();
 
             trns = session.beginTransaction();
             session.createQuery("DELETE FROM users").executeUpdate();

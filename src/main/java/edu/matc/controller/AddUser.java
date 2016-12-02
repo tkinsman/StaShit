@@ -87,8 +87,9 @@ public class AddUser extends HttpServlet {
 
         } else {
 
-
+            session.setAttribute("formMessage", "Username not unique, try with different user name.");
             session.setAttribute("addUserMessage", "Did not add user, try again");
+
             url = "/signUp.jsp";
 
         }

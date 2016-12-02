@@ -2,10 +2,12 @@ package edu.matc.persistence;
 
 import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
+import edu.matc.entity.User;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -16,11 +18,15 @@ import static org.junit.Assert.*;
 public class StorageLocationDaoTest {
 
     StorageLocationDao storageLocDao;
+    UserDao userDao;
     StorageLocation addLoc;
     StorageLocation updateLoc;
     StorageLocation delLoc;
     StorageLocation getLoc;
+    User userLoc;
+    private String username = "userStoLoc";
 
+    int userId;
     int updateId;
     int addId;
     int delId;
@@ -35,14 +41,18 @@ public class StorageLocationDaoTest {
     public void setup() {
         databaseSetupDao = new DatabaseSetupDao();
         databaseSetupDao.clearAllDataFromStorageLocation();
+        databaseSetupDao.clearAllDataFromUserTable();
 
+        userDao = new UserDao();
         storageLocDao = new StorageLocationDao();
 
-
-        getLoc = new StorageLocation("The desc of get", "The Address", "Madison City", "The WI", "53811", "GetTest", "toddName");
-        addLoc = new StorageLocation("The desc of add", "The Address", "Madison City", "The WI", "53811", "AddTest", "toddName");
+        userLoc = new User("admin", "userStoLoc", "johnFirst", "getlast", "password", "addresstest", "madison", 3, LocalDate.now());
+        getLoc = new StorageLocation("The desc of get", "The Address", "Madison City", "The WI", "53811", "GetTest", "userStoLoc");
+        addLoc = new StorageLocation("The desc of add", "The Address", "Madison City", "The WI", "53811", "AddTest", "userStoLoc");
         delLoc = new StorageLocation("The desc of del", "The Address", "Madison City", "The WI", "53811", "DelTest", "toddName");
         updateLoc = new StorageLocation("The desc of update", "The Address", "Madison City", "The WI", "53811", "UpdateTest", "toddName");
+
+        userId = userDao.addUser(userLoc);
 
         addId = storageLocDao.addStorageLocation(addLoc);
         getId = storageLocDao.addStorageLocation(getLoc);
@@ -97,5 +107,23 @@ public class StorageLocationDaoTest {
         int sucInt = storageLocDao.deleteStorageLocation(delId);
         assertEquals("Failed to delete storage location test", 1, sucInt);
     }
+
+    @Test
+    public void getStorageLocIdsFromUserNameTest() {
+        List storageLocIdList = new ArrayList();
+
+        storageLocIdList = storageLocDao.getStorageLocationIdsForUser(username);
+        assertEquals("Failed to get Storage Location Ids for Username", 2, storageLocIdList.size());
+
+
+    }
+
+
+
+
+
+
+
+
 
 }

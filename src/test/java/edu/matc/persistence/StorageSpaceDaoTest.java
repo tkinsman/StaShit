@@ -18,13 +18,16 @@ import static org.junit.Assert.*;
 public class StorageSpaceDaoTest {
 
     private final Logger testingLog = Logger.getLogger("debugLogger");
+    private final Logger log = Logger.getLogger(this.getClass());
 
     private StorageLocationDao storageLocationDao;
     private StorageSpaceDao storageSpaceDao;
     private DatabaseSetupDao databaseSetupDao;
 
     private StorageLocation storageLocation;
+    private StorageLocation storageLocationTwo;
     private int storageLocId;
+    private int storageLocIdTwo;
 
     private StorageSpace storageSpaceGet;
     private StorageSpace storageSpaceUpdate;
@@ -33,6 +36,8 @@ public class StorageSpaceDaoTest {
     private int ssGetId;
     private int ssUpdateId;
     private int ssDeleteId;
+
+    private String username = "userStoLoc";
 
     private List<StorageSpace> storageSpaces;
 
@@ -46,11 +51,14 @@ public class StorageSpaceDaoTest {
         databaseSetupDao.clearAllDataFromStorageSpace();
         databaseSetupDao.clearAllDataFromStorageLocation();
 
-        storageLocation = new StorageLocation("TestLoc for SS testing", "Address Tesing 124", "Verona", "WI", "43932", "Test SS SL Loc", "toddName");
+        storageLocation = new StorageLocation("TestLoc for SS testing", "Address Tesing 124", "Verona", "WI", "43932", "Test SS SL Loc", username);
+        storageLocationTwo = new StorageLocation("TestLoc2 for SS testing", "Address  5124", "Madison", "WI", "43932", "Test SS SL Loc", username);
+
         storageLocId = storageLocationDao.addStorageLocation(storageLocation);
+        storageLocIdTwo = storageLocationDao.addStorageLocation(storageLocationTwo);
 
         storageSpaceGet = new StorageSpace("SS Get Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);
-        storageSpaceUpdate = new StorageSpace("SS Update Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);
+        storageSpaceUpdate = new StorageSpace("SS Update Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocIdTwo);
         storageSpaceDelete = new StorageSpace("SS Delete Setup", "Setup for ss testing", "Basement", Boolean.TRUE, 4, storageLocId);
 
         ssGetId = storageSpaceDao.addStorageSpaceToLocation(storageSpaceGet);
@@ -112,6 +120,19 @@ public class StorageSpaceDaoTest {
 
         int deletedSucInt = storageSpaceDao.deleteStorageSpaceFromLocation(ssDeleteId);
         assertEquals("There was an error with deleting the ss", 1, deletedSucInt);
+
+    }
+
+    @Test
+    public void getStorageSpacesForUsername() {
+
+        List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
+
+        storageSpaces = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
+
+        log.info("The storage spaces for the user are: " + storageSpaces.get(0).getSsName());
+
+        assertEquals("Failed to get storagespaces for username", 3, storageSpaces.size());
 
     }
 
