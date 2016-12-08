@@ -1,3 +1,4 @@
+
 <%@include file="navBar.jsp"%>
 
 <div class="container">
@@ -14,6 +15,8 @@
         <%--Div to append the google map--%>
         <div id="map" style="width:100%;height:300px"></div>
 
+        <input type="hidden" value="${username}" id="userNameForMap" />
+        <input type="hidden" value="${storageMapLocations}" id="storageMapLocations" />
 
     </div>
 </div>
@@ -33,15 +36,25 @@
             </div>
 
             <div class="col-lg-12" style="height:250px; overflow-y:scroll; background:lightgray; padding-top: 1%">
+                <c:forEach var="location" items="${storageLocations}" varStatus="loop">
 
-                <c:forEach var="location" items="${storageLocations}">
+                    <c:set value="${location}" var="location" scope="session" />
 
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
 
                             <%--Todo updated db to hold images to replace this with user images--%>
-                        <a class="thumbnail" href="#">
+                        <a class="thumbnail" href="/stashit/viewlocation?locationId=${location.storageLocId}">
+
+                            <%--Trying to pass value to next page--%>
+
+
+
+                            <%--<jsp:forward page="/viewlocation"/>--%>
+
                             <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+
                         </a>
+
                         <p>${location.stoLocName}</p>
                         <p>${location.stoLocState}</p>
                     </div>

@@ -5,7 +5,7 @@
 <html lang="en">
 
 <% pageContext.setAttribute("title", "StaShit UserHome"); %>
-<%@include file="head.jsp"%>
+<%@include file="head_userHome.jsp"%>
 
 <div class="container">
 

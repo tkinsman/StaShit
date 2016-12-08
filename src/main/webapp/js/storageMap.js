@@ -2,28 +2,67 @@
  * Created by toddkinsman on 11/28/16.
  */
 
-var map;
-
 function initMap() {
 
     getUserLocationLatLong();
 }
 
+var map;
+var userMarkers;
+
+$(document).ready(function() {
+
+
+    var username = $("#userNameForMap").val();
+    stoLocs = $("#storageMapLocations").val();
+
+    console.log("Sto locs: " + stoLocs);
+
+
+    $.ajax({
+        url: "http://localhost:8080/stashit/UserService/userMaplocations/toddName",
+        type: "GET",
+    })
+        .done(function(data, textStatus, jqXHR) {
+            console.log("HTTP Request Succeeded: " + jqXHR.status);
+            console.log(data);
+            userMarkers = data;
+            // locations_callback(data);
+            // addLocationMarkers(data);
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+        })
+        .always(function() {
+            /* ... */
+        });
+
+
+
+
+});
+
 function createUserSpecificMap(lat, long) {
+    var currentPosition = {lat: lat, lng: long};
+
+    console.log("The specid position: " + currentPosition);
+
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 2,
+        zoom: 5,
         center: new google.maps.LatLng(lat,long),
         mapTypeId: 'terrain'
     });
 
-    // Create a <script> tag and set the USGS URL as the source.
-    var script = document.createElement('script');
-    // This example uses a local copy of the GeoJSON stored at
-    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
+    var marker = new google.maps.Marker({
+        position: currentPosition,
+        map: map
+    });
+
+    addLocationMarkers(userMarkers);
 
 }
+
 
 function getUserLocationLatLong() {
 
@@ -46,19 +85,58 @@ function showPosition(position) {
     createUserSpecificMap(userLat, userLong);
 }
 
-
 // Loop through the results array and place a marker for each
 // set of coordinates.
-window.eqfeed_callback = function(results) {
+window.locations_callback = function(results) {
+
+    console.log("you're in the list" + results);
+    console.log("the length: " + results.features.length);
+
     for (var i = 0; i < results.features.length; i++) {
         var coords = results.features[i].geometry.coordinates;
-        var latLng = new google.maps.LatLng(coords[1],coords[0]);
+        console.log("The coods: " + coords);
+        var latLng = new google.maps.LatLng(coords[0],coords[1]);
+        var lat = coords[0];
+        var long = coords[1];
+
+        console.log("The latlng: " + latLng);
+        var currentPosition = {lat: lat, lng: long};
         var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
+            position: currentPosition,
+            map: map,
+            title: 'Hello World!'
         });
+
+        marker.setMap(map);
     }
 }
+
+
+function addLocationMarkers(results) {
+    for (var i = 0; i < results.features.length; i++) {
+        var coords = results.features[i].geometry.coordinates;
+        console.log("The coods: " + coords);
+        var latLng = new google.maps.LatLng(coords[0],coords[1]);
+        var lat = coords[0];
+        var long = coords[1];
+
+        console.log("The latlng: " + latLng);
+        var currentPosition = {lat: lat, lng: long};
+        var marker = new google.maps.Marker({
+            position: currentPosition,
+            map: map,
+            title: 'Hello World!'
+        });
+
+        marker.setMap(map);
+    }
+
+}
+
+function locations_callback(response) {
+    map.data.addGeoJson(response);
+}
+
 
 function showError(error) {
     switch(error.code) {
@@ -76,3 +154,4 @@ function showError(error) {
             break;
     }
 }
+

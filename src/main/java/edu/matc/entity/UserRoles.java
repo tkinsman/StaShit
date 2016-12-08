@@ -22,6 +22,9 @@ public class UserRoles {
     @Column(name = "user_role_id")
     private int userRoleId;
 
+    public UserRoles() {
+    }
+
     public UserRoles(String user_name, String role_name) {
         this.user_name = user_name;
         this.role_name = role_name;

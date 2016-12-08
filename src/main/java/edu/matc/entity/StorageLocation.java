@@ -42,6 +42,7 @@ public class StorageLocation {
     @Column(name = "userName")
     private String userName;
 
+
     public StorageLocation() {
     }
 
@@ -118,4 +119,6 @@ public class StorageLocation {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+
 }

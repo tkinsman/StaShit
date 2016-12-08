@@ -3,12 +3,14 @@ package edu.matc.controller;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
+import edu.matc.entity.MapStorageLocation;
 import edu.matc.entity.StorageLocation;
 import edu.matc.entity.StorageSpace;
 import edu.matc.entity.User;
 import edu.matc.persistence.StorageLocationDao;
 import edu.matc.persistence.StorageSpaceDao;
 import edu.matc.persistence.UserDao;
+import edu.matc.util.LocationServices;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -38,20 +40,23 @@ public class UserLoggedIn extends HttpServlet {
     private List<StorageLocation> storageLocations;
     private StorageSpaceDao storageSpaceDao;
     private StorageLocationDao storageLocationDao;
+    private LocationServices locationServices;
+    private List<MapStorageLocation> mapStorageLocation;
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        locationServices = new LocationServices();
 
         HttpSession session = req.getSession();
         String sessionId = session.getId();
 
         String username = req.getRemoteUser();
         storageLocations = getStorageLocations(username);
-
+        mapStorageLocation = locationServices.convertStorageLocsToMapLocs(storageLocations);
         session.setAttribute("username", username);
         session.setAttribute("addUserMessage", "Successfully logged in");
         session.setAttribute("storageLocations", storageLocations);
+        session.setAttribute("storageMapLocations", mapStorageLocation);
 
 
 //        //Todo get user location from user

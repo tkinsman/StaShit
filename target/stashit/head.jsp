@@ -44,6 +44,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/tileGrid"></script>
     <script src="js/storageMap.js"></script>
+    <script src="js/googleMap.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9dsnXqaTcY_9tp28DsNgSZ355jmMi2R4&callback=initMap"></script>
 

@@ -8,3 +8,30 @@ Todd's
 
 Code Reviewer
 -
+
+            try {
+
+                while (s.hasNext()) {
+                    String word = s.next();
+                    String alpha = alphabetize(word);
+                    List<String> l = m.get(alpha);
+                    if (l == null)
+                        m.put(alpha, l=new ArrayList<String>());
+                    l.add(word);
+                }
+            } catch (IOException e) {
+                System.err.println(e);
+                System.exit(1);
+            }
+
+
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Point",
+                "coordinates": [125.6, 10.1]
+              },
+              "properties": {
+                "name": "Dinagat Islands"
+              }
+            }

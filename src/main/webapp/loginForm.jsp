@@ -1,4 +1,4 @@
-<%@include file="head.jsp"%>
+<%@include file="head_index_login.jsp"%>
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link href="stylesheets/login.css" rel="stylesheet" />
@@ -49,7 +49,7 @@
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <input  type="password" class="form-control" name="j_password" placeholder="Password">
                     </div>
-                    <span class="help-block">Password error</span>
+                    <span class="help-block"></span>
 
                     <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Login</button>
                 </form>

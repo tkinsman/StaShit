@@ -184,13 +184,6 @@ public class StorageSpaceDao {
 
     }
 
-//    public List<UserBills> searchInUserBills(List<Integer> bs) {
-//        Session session = SessionFactoryProvider.getSessionFactory().openSession();
-//        Criteria criteria = session.createCriteria(UserBills.class);
-//        criteria.add(Restrictions.in("bill_id", bs));
-//        List<UserBills> returnList = criteria.list();
-//        return returnList;
-//    }
 
 
 }
