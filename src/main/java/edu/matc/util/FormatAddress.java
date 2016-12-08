@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * Created by toddkinsman on 11/28/16.
  */
-public class FormatAddress extends Thread {
+public class FormatAddress {
 
     private final Logger log = Logger.getLogger(this.getClass());
 
@@ -33,7 +33,6 @@ public class FormatAddress extends Thread {
         double lat;
         double longitude;
 
-        // Synchronous
         try {
 
 
@@ -56,41 +55,5 @@ public class FormatAddress extends Thread {
         return location;
 
     }
-
-
-    public List<MapStorageLocation> generateDicOfLocationCoords(List<StorageLocation> storageLocations) {
-
-        mapStorageLocationList = new ArrayList<MapStorageLocation>();
-        log.info("Storage Loc size: " + storageLocations.size());
-
-        for(StorageLocation storageLocationObj : storageLocations) {
-
-            MapStorageLocation mapLocation;
-
-            log.info("The format address storage loc: " + storageLocationObj);
-
-            String locName = storageLocationObj.getStoLocName();
-            String locDesc = storageLocationObj.getStoLocDescription();
-            String address = storageLocationObj.getStoLocAddress();
-            String city = storageLocationObj.getCity();
-            String state = storageLocationObj.getStoLocState();
-            String zip = storageLocationObj.getStoLocZip();
-
-            mapLocation = new MapStorageLocation(locName, locDesc, address, city, state, zip);
-
-            log.info("Map location object" + mapLocation);
-
-            mapStorageLocationList.add(mapLocation);
-            log.info("The storageLocLat object: " + mapStorageLocationList);
-
-        }
-
-        System.out.println("printing the storage object: " + mapStorageLocationList);
-        log.info("The loop is done: " + mapStorageLocationList);
-
-        return mapStorageLocationList;
-
-    }
-
 
 }

@@ -32,6 +32,7 @@ public class MapStorageLocation {
     }
 
     public MapStorageLocation(String stoLocName, String stoLocDesc, String stoLocAddress, String stoLocCity, String stoLocState, String stoLocZip) {
+        super();
         this.coords = formatAddress.createFormattedAddress(stoLocAddress, stoLocCity, stoLocState, stoLocZip);
         this.stoLocName = stoLocName;
         this.stoLocDesc = stoLocDesc;

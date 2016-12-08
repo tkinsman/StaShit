@@ -44,7 +44,7 @@
     <div class="btn-group">
         <button type="submit" class="btn btn-primary">Submit</button>
         <%--todo fix this--%>
-        <button type="button" class="btn btn-default" ><a href="userHome.jsp">Cancel</a></button>
+        <button type="button" class="btn btn-default" ><a href="/stashit/userhome">Cancel</a></button>
     </div>
 
 </form>

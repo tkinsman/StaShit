@@ -47,6 +47,7 @@ public class StorageLocation {
     }
 
     public StorageLocation(String stoLocDescription, String stoLocAddress, String city, String stoLocState, String stoLocZip, String stoLocName, String userName) {
+        super();
         this.stoLocDescription = stoLocDescription;
         this.stoLocAddress = stoLocAddress;
         this.city = city;

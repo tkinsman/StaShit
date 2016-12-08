@@ -26,6 +26,7 @@ public class UserRoles {
     }
 
     public UserRoles(String user_name, String role_name) {
+        super();
         this.user_name = user_name;
         this.role_name = role_name;
     }

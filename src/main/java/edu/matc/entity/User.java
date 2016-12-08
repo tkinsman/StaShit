@@ -54,6 +54,7 @@ public class User {
     }
 
     public User(String userType, String userName, String firstName, String lastName, String password, String address, String city, int userRating, LocalDate joinDate) {
+        super();
         this.userType = userType;
         this.userName = userName;
         this.firstName = firstName;

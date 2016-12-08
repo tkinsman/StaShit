@@ -4,44 +4,48 @@
 
 function initMap() {
 
-    getUserLocationLatLong();
+    // getUserLocationLatLong();
+    loadmaps();
 }
 
 var map;
 var userMarkers;
 
-$(document).ready(function() {
 
 
-    var username = $("#userNameForMap").val();
-    stoLocs = $("#storageMapLocations").val();
+var username = $("#userNameForMap").val();
+stoLocs = $("#storageMapLocations").val();
 
-    console.log("Sto locs: " + stoLocs);
+console.log("Sto locs: " + stoLocs);
 
 
+function loadmaps() {
     $.ajax({
         url: "http://localhost:8080/stashit/UserService/userMaplocations/toddName",
         type: "GET",
     })
-        .done(function(data, textStatus, jqXHR) {
+        .done(function (data, textStatus, jqXHR) {
             console.log("HTTP Request Succeeded: " + jqXHR.status);
             console.log(data);
             userMarkers = data;
             // locations_callback(data);
+            getUserLocationLatLong();
             // addLocationMarkers(data);
 
+
+
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+        .fail(function (jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
         })
-        .always(function() {
+        .always(function () {
             /* ... */
         });
 
+}
 
 
 
-});
 
 function createUserSpecificMap(lat, long) {
     var currentPosition = {lat: lat, lng: long};

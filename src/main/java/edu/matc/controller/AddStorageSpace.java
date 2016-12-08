@@ -5,6 +5,7 @@ import edu.matc.entity.StorageSpace;
 import edu.matc.persistence.StorageLocationDao;
 import edu.matc.persistence.StorageSpaceDao;
 import edu.matc.persistence.UserRoleDao;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -30,13 +31,15 @@ public class AddStorageSpace extends HttpServlet {
     StorageSpaceDao storageSpaceDao;
     List<StorageSpace> storageSpaceList;
 
+    private final Logger log = Logger.getLogger(this.getClass());
+
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ServletContext context = getServletContext();
+        String url;
         HttpSession session = req.getSession();
         storageSpaceDao = new StorageSpaceDao();
-        String url;
 
+        //TOdo: add to validagtion class
         String ssName = req.getParameter("ssName");
         String ssDescription = req.getParameter("ssDescription");
         String ssType = req.getParameter("ssType");
@@ -49,6 +52,7 @@ public class AddStorageSpace extends HttpServlet {
         // TODO: 11/30/16 add validation to the form
         storageSpaceDao.addStorageSpaceToLocation(storageSpace);
         storageSpaceList = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
+
         session.setAttribute("storageSpaces", storageSpaceList);
 
 

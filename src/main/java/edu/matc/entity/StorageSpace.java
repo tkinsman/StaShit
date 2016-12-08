@@ -41,6 +41,7 @@ public class StorageSpace {
 
 
     public StorageSpace(String ssName, String ssDescription, String ssType, Boolean ssAvailibility, int ssRating, int storageLocationId) {
+        super();
         this.ssName = ssName;
         this.ssDescription = ssDescription;
         this.ssType = ssType;
