@@ -15,6 +15,19 @@
             <web-resource-name>UserHome</web-resource-name>
             <url-pattern>/userhome</url-pattern>
 
+            <web-resource-name>UserLocation</web-resource-name>
+            <url-pattern>/addLocation.jsp</url-pattern>
+
+            <web-resource-name>UserLocation</web-resource-name>
+            <url-pattern>/addlocation</url-pattern>
+
+            <web-resource-name>UserStorage</web-resource-name>
+            <url-pattern>/addStorageSpace.jsp</url-pattern>
+
+            <web-resource-name>UserStorage</web-resource-name>
+            <url-pattern>/addspace</url-pattern>
+
+
         </web-resource-collection>
 
         <auth-constraint>

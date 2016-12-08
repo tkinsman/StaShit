@@ -5,6 +5,7 @@ import com.google.maps.model.LatLng;
 import edu.matc.entity.StorageLocation;
 import edu.matc.persistence.StorageLocationDao;
 import edu.matc.util.FormatAddress;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 /**
  * Created by toddkinsman on 12/2/16.
@@ -28,7 +29,7 @@ import java.util.logging.Logger;
 )
 public class ViewLocationDetails extends HttpServlet {
 
-//    private final Logger log = Logger.getLogger(this.getClass());
+    private final Logger log = Logger.getLogger(this.getClass());
 
     private StorageLocationDao storageLocationDao;
     FormatAddress formatAddress;
@@ -56,6 +57,8 @@ public class ViewLocationDetails extends HttpServlet {
         session.setAttribute("latLong", latLong);
 
         String latLongjson = new Gson().toJson(latLong);
+
+        log.info("The object with latLong" + latLongjson);
 
 
         resp.setContentType("application/json");

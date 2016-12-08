@@ -42,14 +42,7 @@
 
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
 
-                            <%--Todo updated db to hold images to replace this with user images--%>
                         <a class="thumbnail" href="/stashit/viewlocation?locationId=${location.storageLocId}">
-
-                            <%--Trying to pass value to next page--%>
-
-
-
-                            <%--<jsp:forward page="/viewlocation"/>--%>
 
                             <img class="img-responsive" src="images/homesil.jpeg" alt="house">
 

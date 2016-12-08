@@ -13,7 +13,7 @@
             <nav>
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="active"><a href="index.jsp">Home</a></li>
-                    <li role="presentation"><a href="about.jsp">About</a></li>
+                    <%--<li role="presentation"><a href="about.jsp">About</a></li>--%>
                 </ul>
             </nav>
             <h3 class="text-muted">Welcome to StaShit</h3>
