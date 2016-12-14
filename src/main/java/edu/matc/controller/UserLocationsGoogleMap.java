@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Extra class to use to generate geoJson to help do interal requests rather than rely on the API.
  * Created by toddkinsman on 12/4/16.
  */
 @WebServlet(name = "userlocationsmap",
@@ -35,6 +36,14 @@ public class UserLocationsGoogleMap extends HttpServlet{
     ArrayList latLong;
     LocationServices locationServices;
 
+    /**
+     * Handles the HTTP GET to get locations and convert them to geoJson
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         locationServices = new LocationServices();
@@ -70,8 +79,11 @@ public class UserLocationsGoogleMap extends HttpServlet{
     }
 
 
-
-
+    /**
+     * Usered to work with dao to get all user locations.
+     * @param username
+     * @return
+     */
     public List<StorageLocation> getStorageLocations(String username) {
 
         storageLocationDao = new StorageLocationDao();

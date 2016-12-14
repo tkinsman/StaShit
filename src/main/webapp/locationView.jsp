@@ -13,7 +13,7 @@
 
 <% pageContext.setAttribute("title", "Location Details"); %>
 
-    <%@include file="head.jsp"%>
+    <%@include file="head_locationView.jsp"%>
 
     <div class="container">
 

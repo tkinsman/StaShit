@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
+ * The servlet handling the logging out of a user.
  * Created by toddkinsman on 11/2/16.
  */
 @WebServlet(
@@ -25,6 +26,13 @@ import java.util.Date;
 )
 public class Logout extends HttpServlet {
 
+    /**
+     * Handles the HTTP request to log a user out.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);

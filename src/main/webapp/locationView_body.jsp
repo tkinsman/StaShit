@@ -17,11 +17,8 @@
 
         <%--Div to append the google map--%>
         <div id="map" style="width:100%;height:300px"></div>
-
-        <c:forEach items="latLong" var="coord" varStatus="loop">
-            <p>First Loop ${loop.index}: ${coord}</p>
-        </c:forEach>
-
+        <input type="hidden" id="lat" value="${lat}">
+        <input type="hidden" id="long" value="${longit}">
 
     </div>
 </div>
@@ -42,21 +39,11 @@
 
             <div class="col-lg-12" style="height:250px; overflow-y:scroll; background:lightgray; padding-top: 1%">
 
-                <%--<c:forEach var="location" items="${storageLocations}">--%>
-
-                    <%--<div class="col-lg-3 col-md-4 col-xs-6 thumb">--%>
-
-                            <%--&lt;%&ndash;Todo updated db to hold images to replace this with user images&ndash;%&gt;--%>
-                        <%--<a class="thumbnail" href="#">--%>
-                            <%--<img class="img-responsive" src="http://placehold.it/400x300" alt="">--%>
-                        <%--</a>--%>
-                        <%--<p>${location.stoLocName}</p>--%>
-                        <%--<p>${location.stoLocState}</p>--%>
-                    <%--</div>--%>
-
-                <%--</c:forEach>--%>
+                <%@include file="locationViewDetail_form.jsp"%>
 
             </div>
         </div>
+
+
     </div>
 </div>

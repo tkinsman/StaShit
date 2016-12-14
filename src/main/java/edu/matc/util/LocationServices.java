@@ -13,6 +13,9 @@ import javax.json.JsonObjectBuilder;
 import java.util.*;
 
 /**
+ *
+ * The Location services class convers the MapStorageLocation objects to a geoJson object for use in location creation on
+ * the google maps.
  * Created by toddkinsman on 12/5/16.
  */
 public class LocationServices {
@@ -23,6 +26,12 @@ public class LocationServices {
 
     private List<MapStorageLocation> mapStorageLocationList;
 
+    /**
+     * Creates teh List of MapStorageLocation objects for geoJson conversion
+     *
+     * @param storageLocationList
+     * @return
+     */
     public List<MapStorageLocation> convertStorageLocsToMapLocs(List<StorageLocation> storageLocationList) {
         LatLng location;
         mapStorageLocationList = new ArrayList<MapStorageLocation>();
@@ -82,6 +91,12 @@ public class LocationServices {
 
     }
 
+    /**
+     * Creates the geoJson object for google maps
+     *
+     * @param mapStorageLocations
+     * @return
+     */
     public String createGeoJsonObject(List<MapStorageLocation> mapStorageLocations) {
 
         Gson gson = new Gson();
@@ -133,9 +148,10 @@ public class LocationServices {
     }
 
 
-
-
-
+    /**
+     * Helper method to add mapLocation to List of map locations
+     * @param mapstorageLoc
+     */
     private void addMapLocation(MapStorageLocation mapstorageLoc) {
 
         this.mapStorageLocationList.add(mapstorageLoc);

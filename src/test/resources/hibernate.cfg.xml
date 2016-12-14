@@ -24,6 +24,7 @@
         <mapping class="edu.matc.entity.User"/>
         <mapping class="edu.matc.entity.StorageLocation"/>
         <mapping class="edu.matc.entity.StorageSpace"/>
+        <mapping class="edu.matc.entity.UserRoles"/>
 
     </session-factory>
 

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The storage space data access object to work with storage space table
  * Created by toddkinsman on 10/18/16.
  */
 public class StorageSpaceDao {
@@ -18,12 +19,10 @@ public class StorageSpaceDao {
     private final Logger log = Logger.getLogger(this.getClass());
     private final Logger logHibr = Logger.getLogger("hibernateLogger");
 
-    //Todo change this to be a transaction
-    //Todo add flush to transaction as well
     /**
      * Return list of storage spaces given a location
-     *
-     * @return All storage spaces for a location
+     * @param storageLocation
+     * @return
      */
     public List<StorageSpace> getAllStorageSpacesforLocation(StorageLocation storageLocation) {
 
@@ -37,6 +36,11 @@ public class StorageSpaceDao {
 
     }
 
+    /**
+     * Get all storage spaces for a given location
+     * @param storageSpaceId
+     * @return
+     */
     public StorageSpace getStorageSpaceForLocationSpaceId(int storageSpaceId) {
 
         StorageSpace storageSpace = new StorageSpace();
@@ -50,7 +54,11 @@ public class StorageSpaceDao {
 
     }
 
-    //Todo add tests for this
+    /**
+     * Get storage spaces for a given userid
+     * @param storageLocId
+     * @return
+     */
     public List<StorageSpace> getStorageSpacesForUserid(int storageLocId) {
 
         List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
@@ -62,7 +70,11 @@ public class StorageSpaceDao {
 
     }
 
-
+    /**
+     * add storage space
+     * @param storageSpace
+     * @return
+     */
     public int addStorageSpaceToLocation(StorageSpace storageSpace) {
 
 
@@ -77,7 +89,6 @@ public class StorageSpaceDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             log.info("The runtime exception: " + e);
         } finally {
             session.flush();
@@ -90,6 +101,12 @@ public class StorageSpaceDao {
 
     }
 
+    /**
+     * Update a storage space for a given storage object
+     *
+     * @param storageSpace
+     * @return
+     */
     public int updateStorageSpaceToLocation(StorageSpace storageSpace) {
 
 
@@ -104,7 +121,6 @@ public class StorageSpaceDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             log.info("The runtime exception of updated storage space: " + e);
         } finally {
             session.flush();
@@ -117,6 +133,12 @@ public class StorageSpaceDao {
 
     }
 
+    /**
+     * Delete a storage space given the storage space id
+     *
+     * @param ssId
+     * @return
+     */
     public int deleteStorageSpaceFromLocation(int ssId) {
         Transaction trns = null;
         int sucInt;
@@ -134,7 +156,7 @@ public class StorageSpaceDao {
                 trns.rollback();
             }
 
-            e.printStackTrace();
+
             log.info("this is a delete exception for storage spaces: " + e);
             sucInt = 0;
 
@@ -147,7 +169,12 @@ public class StorageSpaceDao {
 
     }
 
-
+    /**
+     * Get all related storage spaces for a given user
+     *
+     * @param username
+     * @return
+     */
     public List<StorageSpace> getAllRelatedStorageSpacesForUser(String username) {
 
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
@@ -166,11 +193,11 @@ public class StorageSpaceDao {
             storageSpaces = criteria.list();
             session.getTransaction().commit();
 
-
         } catch (RuntimeException e) {
             if (trns != null) {
                 trns.rollback();
             }
+
             log.info("There was a runtime exception getting storage spaces related to storage loc ids" + e);
 
         } finally {
@@ -179,9 +206,6 @@ public class StorageSpaceDao {
         }
 
         return storageSpaces;
-
-
-
     }
 
 

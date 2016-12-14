@@ -9,11 +9,17 @@ import java.util.Set;
 @ApplicationPath("/")
 
 /**
+ *
+ *  The Application class for the RESTful api part of the application
+ *
  * Created by toddkinsman on 10/26/16.
  */
 public class StashitApplication extends Application {
 
-    //The method returns a non-empty collection with classes, that must be included in the published JAX-RS application
+    /**
+     *
+     * @return
+     */
     @Override
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();

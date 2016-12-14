@@ -15,6 +15,7 @@ import java.util.*;
 import java.util.ArrayList;
 
 /**
+ * The data access object to work with db for storage location
  * Created by toddkinsman on 10/18/16.
  */
 public class StorageLocationDao {
@@ -34,6 +35,11 @@ public class StorageLocationDao {
 
     }
 
+    /**
+     * Gets a location by id
+     * @param id
+     * @return
+     */
     public StorageLocation getStorageLocation(int id) {
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         StorageLocation storageLocation = (StorageLocation) session.get(StorageLocation.class, id);
@@ -42,6 +48,11 @@ public class StorageLocationDao {
 
     }
 
+    /**
+     * gets a location with a location object
+     * @param storageLocation
+     * @return
+     */
     public int addStorageLocation(StorageLocation storageLocation) {
         Transaction trns = null;
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
@@ -68,6 +79,11 @@ public class StorageLocationDao {
         return id;
     }
 
+    /**
+     * updates location with location object
+     * @param storageLocation
+     * @return
+     */
     public int updateStorageLocation(StorageLocation storageLocation) {
 
         Transaction trns = null;
@@ -95,6 +111,11 @@ public class StorageLocationDao {
 
     }
 
+    /**
+     * deletes location based on location id
+     * @param id
+     * @return
+     */
     public int deleteStorageLocation(int id) {
         Transaction trns = null;
         int sucInt;
@@ -123,6 +144,11 @@ public class StorageLocationDao {
 
     }
 
+    /**
+     * gets all locations by user name
+     * @param username
+     * @return
+     */
     public List<StorageLocation> getStorageLocationsByUserName(String username) {
 
         List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
@@ -148,6 +174,11 @@ public class StorageLocationDao {
         return storageLocations;
     }
 
+    /**
+     * Gets all location IDs based on username
+     * @param username
+     * @return
+     */
     public List getStorageLocationIdsForUser(String username) {
 
         List storageLocatIds = new ArrayList();

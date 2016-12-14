@@ -33,6 +33,13 @@ public class AddStorageSpace extends HttpServlet {
 
     private final Logger log = Logger.getLogger(this.getClass());
 
+    /**
+     *  Handles HTTP POST requests for new storage space form.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String url;

@@ -16,6 +16,10 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 /**
+ *
+ * The format address class knows about the Google Maps Java client and aids in the geo coding of string address
+ * that the user inputs
+ *
  * Created by toddkinsman on 11/28/16.
  */
 public class FormatAddress {
@@ -26,6 +30,15 @@ public class FormatAddress {
     GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyB9dsnXqaTcY_9tp28DsNgSZ355jmMi2R4");
     LatLng location;
 
+    /**
+     * Creates a lat and long data point that is used to add map markers for google maps.
+     *
+     * @param address
+     * @param city
+     * @param state
+     * @param zip
+     * @return
+     */
     public LatLng createFormattedAddress(String address, String city, String state, String zip) {
         GeocodingResult[] results =  new GeocodingResult[0];
         log.info("The results before try: " + results.length);
@@ -35,22 +48,18 @@ public class FormatAddress {
 
         try {
 
-
             results =  GeocodingApi.geocode(context, address + city + state + zip).await();
             location = results[0].geometry.location;
             log.info("A successful google request!" + location.lat);
 
         } catch (Exception e) {
-            // Handle error
-            log.info("Failed Google Geocode Request" + e);
 
+            log.info("Failed Google Geocode Request" + e);
 
         }
 
         location = results[0].geometry.location;
-
         log.info("Location: " + location);
-
 
         return location;
 

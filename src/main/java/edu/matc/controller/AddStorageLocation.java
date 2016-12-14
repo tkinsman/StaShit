@@ -18,6 +18,13 @@ import java.util.List;
 /**
  * Created by toddkinsman on 9/22/16.
  */
+/**
+ * Add Storage Location servlet to add new location to db using dao
+ *
+ *
+ * @author Todd Kinsman
+ * @since 10/27/16
+ */
 @WebServlet(
         name = "addlocation",
         urlPatterns = { "/addlocation" }
@@ -29,6 +36,15 @@ public class AddStorageLocation extends HttpServlet{
 
     private final Logger log = Logger.getLogger(this.getClass());
 
+
+    /**
+     *  Handles HTTP POST requests for new location form.
+     *
+     *@param  req               an httpServlet request
+     *@param  resp              an httpServlet response
+     *@exception  ServletException  if there is a Servlet failure
+     *@exception  IOException       if there is an IO failure
+     */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
@@ -62,6 +78,11 @@ public class AddStorageLocation extends HttpServlet{
 
     }
 
+    /**
+     *
+     * @param username
+     * @return storage location object
+     */
     public List<StorageLocation> addStorageloc(String username) {
 
         StorageLocationDao storageLocationDao = new StorageLocationDao();

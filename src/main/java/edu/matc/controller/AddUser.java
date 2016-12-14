@@ -72,6 +72,10 @@ public class AddUser extends HttpServlet {
         validData = signUpValidation.validateUserData(username, firstName, lastName, address, city, state, zip, phoneNumber, emailAddress, validData);
         HttpSession session = request.getSession();
 
+
+        /**
+         *  Validate the new user information is valid otherwise outputs appropriate error message
+         */
         if (validData && uniqueUsername) {
 
             User user = new User(userType, username, firstName, lastName, password, address, city, 0, today);

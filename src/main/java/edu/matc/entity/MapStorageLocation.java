@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The Java bean that stores information about the location and the geoCoding assocated with it for Google Maps
  * Created by toddkinsman on 12/4/16.
  */
 public class MapStorageLocation {
@@ -28,9 +29,21 @@ public class MapStorageLocation {
 
     private FormatAddress formatAddress = new FormatAddress();
 
+    /**
+     *  No-args constructor
+     */
     public MapStorageLocation() {
     }
 
+    /**
+     *  Constructor to add locations
+     * @param stoLocName
+     * @param stoLocDesc
+     * @param stoLocAddress
+     * @param stoLocCity
+     * @param stoLocState
+     * @param stoLocZip
+     */
     public MapStorageLocation(String stoLocName, String stoLocDesc, String stoLocAddress, String stoLocCity, String stoLocState, String stoLocZip) {
         super();
         this.coords = formatAddress.createFormattedAddress(stoLocAddress, stoLocCity, stoLocState, stoLocZip);

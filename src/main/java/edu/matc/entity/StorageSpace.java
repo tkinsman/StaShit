@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
+ * The storage space java bean
  * Created by toddkinsman on 9/22/16.
  */
 
@@ -36,10 +37,22 @@ public class StorageSpace {
     @Column(name = "storageLocationId")
     private int storageLocationId;
 
+    /**
+     * No-args constructor
+     */
     public StorageSpace() {
     }
 
 
+    /**
+     * Contstructor used to init new location
+     * @param ssName
+     * @param ssDescription
+     * @param ssType
+     * @param ssAvailibility
+     * @param ssRating
+     * @param storageLocationId
+     */
     public StorageSpace(String ssName, String ssDescription, String ssType, Boolean ssAvailibility, int ssRating, int storageLocationId) {
         super();
         this.ssName = ssName;

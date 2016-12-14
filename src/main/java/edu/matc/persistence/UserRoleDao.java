@@ -32,6 +32,11 @@ public class UserRoleDao {
         return userRoles;
     }
 
+    /**
+     * Add a user role
+     * @param userRoles
+     * @return
+     */
     public int addUserRole(UserRoles userRoles) {
 
         Transaction trns = null;
@@ -58,6 +63,12 @@ public class UserRoleDao {
 
     }
 
+    /**
+     * delete a user role
+     *
+     * @param userRoles
+     * @return
+     */
     public int deleteUserRole(UserRoles userRoles) {
 
         Transaction trns = null;
@@ -86,7 +97,12 @@ public class UserRoleDao {
         return sucInt;
     }
 
-
+    /**
+     * delete user role based on role id
+     *
+     * @param userRoleId
+     * @return
+     */
     public int deleteUserRoleById(int userRoleId) {
 
         Transaction trns = null;

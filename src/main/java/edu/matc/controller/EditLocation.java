@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+
 /**
  * Created by toddkinsman on 12/2/16.
  */
@@ -18,6 +19,13 @@ import java.io.IOException;
 )
 public class EditLocation extends HttpServlet {
 
+    /**
+     *  Handles HTTP request to edit user, forwards to edit at add user form
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

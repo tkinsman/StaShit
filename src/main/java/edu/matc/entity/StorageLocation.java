@@ -6,6 +6,7 @@ import org.hibernate.annotations.Tables;
 import javax.persistence.*;
 
 /**
+ * The storage location Java bean.
  * Created by toddkinsman on 9/22/16.
  */
 

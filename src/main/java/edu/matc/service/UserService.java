@@ -19,6 +19,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
+ * The service class that outlines all the endpoints needed for the Restful API
+ *
  * Created by toddkinsman on 10/26/16.
  */
 @Path("/UserService")
@@ -26,6 +28,10 @@ public class UserService {
 
     UserDao userDao = new UserDao();
 
+    /**
+     * The get all users endpoint
+     * @return
+     */
     @GET
     @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,6 +40,11 @@ public class UserService {
         return users;
     }
 
+    /**
+     * The get user by Id endpoint
+     * @param userId
+     * @return
+     */
     @GET
     @Path("/users/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +54,12 @@ public class UserService {
         return Response.status(200).entity(user).build();
     }
 
+    /**
+     * The get user locations endpoint
+     *
+     * @param userName
+     * @return
+     */
     @GET
     @Path("/userlocations/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,20 +71,24 @@ public class UserService {
         StorageLocationDao storageLocationDao = new StorageLocationDao();
         storageLocations = storageLocationDao.getStorageLocationsByUserName(userName);
 
-        //Send storage location to contructu map with lat long
-
 
         return storageLocations;
     }
 
+    /**
+     * The get user geoJSON locations
+     *
+     * @param userName
+     * @return
+     */
     @GET
     @Path("/userMaplocations/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getMapLocationsJson(@PathParam("userName") String userName){
         List<StorageLocation> storageLocations = new ArrayList<>();
         LocationServices locationServices = new LocationServices();
-//        Map<Object, Object> json;
         String json;
+
         //Get storage locations
         List<MapStorageLocation> mapStorageLocations = new ArrayList<>();
         StorageLocationDao storageLocationDao = new StorageLocationDao();

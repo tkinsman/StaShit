@@ -31,7 +31,7 @@
         </web-resource-collection>
 
         <auth-constraint>
-            <role-name>administrator</role-name>
+            <role-name>admin</role-name>
             <role-name>registered-user</role-name>
         </auth-constraint>
     </security-constraint>

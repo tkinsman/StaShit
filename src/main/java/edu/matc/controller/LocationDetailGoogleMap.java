@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A suplementary class to create json output instead of the restful service.
  * Created by toddkinsman on 12/2/16.
  */
 @WebServlet(
@@ -35,6 +36,13 @@ public class LocationDetailGoogleMap extends HttpServlet {
     List<Double> latLong;
     LocationServices locationServices;
 
+    /**
+     * Handles the HTTP request to get location details for json output
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         locationServices = new LocationServices();

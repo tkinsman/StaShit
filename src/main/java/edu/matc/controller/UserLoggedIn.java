@@ -43,7 +43,13 @@ public class UserLoggedIn extends HttpServlet {
     private LocationServices locationServices;
     private List<MapStorageLocation> mapStorageLocation;
 
-
+    /**
+     * Handles HTTP GET to login users.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         locationServices = new LocationServices();
 
@@ -73,12 +79,16 @@ public class UserLoggedIn extends HttpServlet {
 
     }
 
+    /**
+     * Helper method to get all stoage spaces associated with user
+     * @param username
+     * @return
+     */
     public List<StorageSpace> getStorageSpaces(String username) {
 
         storageSpaceDao = new StorageSpaceDao();
         List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
 
-        //// TODO: 11/29/16 fix the name of method
         storageSpaces = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
 
         return storageSpaces;
@@ -90,7 +100,6 @@ public class UserLoggedIn extends HttpServlet {
          storageLocationDao = new StorageLocationDao();
         List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
 
-        //// TODO: 11/29/16 fixe the name of method
         storageLocations = storageLocationDao.getStorageLocationsByUserName(username);
 
         return storageLocations;

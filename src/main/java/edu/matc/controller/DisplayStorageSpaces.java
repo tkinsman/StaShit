@@ -28,14 +28,20 @@ public class DisplayStorageSpaces extends HttpServlet {
     private List<StorageSpace> storageSpaces;
     private StorageSpaceDao storageSpaceDao;
 
-
+    /**
+     *  Handles HTTP get request to show individual storage space.
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
         HttpSession session = req.getSession();
+        String username = req.getRemoteUser();
 
-
-        storageSpaces = getStorageSpaces(278);
+        storageSpaces = getStorageSpaces(username);
         session.setAttribute("storageSpaces", storageSpaces);
 
 
@@ -47,13 +53,18 @@ public class DisplayStorageSpaces extends HttpServlet {
 
     }
 
-    public List<StorageSpace> getStorageSpaces(int userId) {
+    /**
+     * Gets all storage spaces for user
+     * @param username
+     * @return
+     */
+    public List<StorageSpace> getStorageSpaces(String username) {
 
         storageSpaceDao = new StorageSpaceDao();
         List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
 
         //// TODO: 11/29/16 fixe the name of method
-        storageSpaces = storageSpaceDao.getStorageSpacesForUserid(userId);
+        storageSpaces = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
 
         return storageSpaces;
 

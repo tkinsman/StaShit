@@ -21,6 +21,7 @@ import java.util.List;
 
 
 /**
+ * Servlet to direct user to full view of location
  * Created by toddkinsman on 12/2/16.
  */
 @WebServlet(
@@ -36,13 +37,22 @@ public class ViewLocationDetails extends HttpServlet {
     List<StorageLocation> storageLocation2;
     StorageLocation storageLocation;
     LatLng latLong;
+    List<Double> location;
 
+    /**
+     *  Handles HTTP GET to forward user to locaitons details page
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         storageLocationDao = new StorageLocationDao();
         storageLocation = new StorageLocation();
         formatAddress = new FormatAddress();
+        location = new ArrayList<>();
 
         String url = "/locationView.jsp";
         String locIDString = req.getParameter("locationId");
@@ -54,16 +64,18 @@ public class ViewLocationDetails extends HttpServlet {
         latLong = formatAddress.createFormattedAddress(storageLocation.getStoLocAddress(), storageLocation.getCity(), storageLocation.getStoLocState(), storageLocation.getStoLocZip());
 
         session.setAttribute("storageLoc", storageLocation);
-        session.setAttribute("latLong", latLong);
+
 
         String latLongjson = new Gson().toJson(latLong);
 
         log.info("The object with latLong" + latLongjson);
 
+        location.add(latLong.lat);
+        location.add(latLong.lng);
 
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(latLongjson);
+        log.info("The object with location" + location.size());
+        session.setAttribute("lat", latLong.lat);
+        session.setAttribute("longit", latLong.lng);
 
         RequestDispatcher dispatcher =
                 getServletContext().getRequestDispatcher(url);

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 
 /**
+ * The user java bean
  * Created by toddkinsman on 9/21/16.
  */
 
@@ -50,9 +51,25 @@ public class User {
     @Column(name = "joinDate")
     private LocalDate joinDate;
 
+    /**
+     * The empty constructor for User
+     */
     public User() {
     }
 
+    /**
+     * The constructor to init a new user
+     *
+     * @param userType
+     * @param userName
+     * @param firstName
+     * @param lastName
+     * @param password
+     * @param address
+     * @param city
+     * @param userRating
+     * @param joinDate
+     */
     public User(String userType, String userName, String firstName, String lastName, String password, String address, String city, int userRating, LocalDate joinDate) {
         super();
         this.userType = userType;
