@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="edu.matc.persistence.UserDaoTest" time="0.157" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="edu.matc.persistence.UserDaoTest" time="0.144" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2016.2.5"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -62,11 +62,11 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="getUsersByLastName" time="0.02"/>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="getUserByUserName" time="0.022"/>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="addUser" time="0.026"/>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="getAllUsers" time="0.02"/>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="updateUser" time="0.022"/>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="getUser" time="0.023"/>
-  <testcase classname="edu.matc.persistence.UserDaoTest" name="deleteUser" time="0.021"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="getUsersByLastName" time="0.021"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="getUserByUserName" time="0.018"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="addUser" time="0.017"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="getAllUsers" time="0.021"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="updateUser" time="0.025"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="getUser" time="0.017"/>
+  <testcase classname="edu.matc.persistence.UserDaoTest" name="deleteUser" time="0.024"/>
 </testsuite>

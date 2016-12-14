@@ -68,7 +68,7 @@
 
 
                 <p class="navbar-text pull-right">
-                    <a href="addStorageSpace.jsp" class="navbar-link">Add New Storage</a>
+                    <a href="/stashit/addspace" class="navbar-link">Add New Storage</a>
                 </p>
             </div>
 
@@ -77,7 +77,7 @@
                 <c:forEach var="space" items="${storageSpaces}">
 
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
+                        <a class="thumbnail" href="/stashit/viewspace?spaceId=${space.storageSpaceId}">
                             <img class="img-responsive" src="images/nut.png" alt="nut storage">
                         </a>
                         <p>${space.ssName}</p>

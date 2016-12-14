@@ -89,7 +89,12 @@ public class AddUser extends HttpServlet {
             session.setAttribute("addUserMessage", "Successfully added user");
             session.setAttribute("username", username);
 
-            url = "/userHome.jsp";
+            url = "/loginForm.jsp";
+
+            session.setAttribute("loginNew", "Please login " + username);
+
+
+
 
         } else {
 
@@ -100,14 +105,9 @@ public class AddUser extends HttpServlet {
 
         }
 
-
-
         RequestDispatcher dispatcher =
                 getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
-
-
-
 
     }
 

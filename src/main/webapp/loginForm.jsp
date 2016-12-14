@@ -5,6 +5,7 @@
 
 <div class="container">
 
+    <label>${loginNew}</label>
 
     <div class="omb_login">
         <h3 class="omb_authTitle">Login or <a href="signUp.jsp">Sign up</a></h3>
