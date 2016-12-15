@@ -23,7 +23,6 @@
     <link href="stylesheets/tileGrid.css" rel="stylesheet">
     <link href="stylesheets/signup.css" rel="stylesheet">
 
-    <%--Todo remove this from template and put in css --%>
     <!-- Custom styles for this template -->
     <style>
         body {

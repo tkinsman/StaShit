@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Called to to get storage spaces for displaying on homepayge
  * Created by toddkinsman on 11/29/16.
  */
 @WebServlet(
@@ -22,8 +23,6 @@ import java.util.List;
         urlPatterns = { "/storagespace" }
 )
 public class DisplayStorageSpaces extends HttpServlet {
-
-    // Todo move all this to the login controller
 
     private List<StorageSpace> storageSpaces;
     private StorageSpaceDao storageSpaceDao;
@@ -37,13 +36,11 @@ public class DisplayStorageSpaces extends HttpServlet {
      */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         HttpSession session = req.getSession();
         String username = req.getRemoteUser();
 
         storageSpaces = getStorageSpaces(username);
         session.setAttribute("storageSpaces", storageSpaces);
-
 
         String url = "/userHome.jsp";
 
@@ -63,7 +60,6 @@ public class DisplayStorageSpaces extends HttpServlet {
         storageSpaceDao = new StorageSpaceDao();
         List<StorageSpace> storageSpaces = new ArrayList<StorageSpace>();
 
-        //// TODO: 11/29/16 fixe the name of method
         storageSpaces = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
 
         return storageSpaces;

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
+ * directs user to new signup
  * Created by toddkinsman on 11/2/16.
  */
 @WebServlet(

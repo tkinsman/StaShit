@@ -41,7 +41,6 @@
             <label for="phoneNumber">Phone Number:</label>
             <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="phoneNumber">
         </div>
-        <%--todo change to type email--%>
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="text" class="form-control" name="email" id="email" placeholder="email">
@@ -55,7 +54,7 @@
             <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="confirm password">
         </div>
 
-        <%--Todo make a controller to send things to index/landing page--%>
+
     	<button type="submit" class="btn btn-primary">Submit</button>
         <a href="/stashit/index">Cancel</a>
 

@@ -69,7 +69,8 @@ public class AddUser extends HttpServlet {
 
         int userIdAdded = 0;
 
-        validData = signUpValidation.validateUserData(username, firstName, lastName, address, city, state, zip, phoneNumber, emailAddress, validData);
+        validData = signUpValidation.validateUserData(username, firstName, lastName, address, city, state, zip,
+                phoneNumber, emailAddress, validData);
         HttpSession session = request.getSession();
 
 
@@ -92,8 +93,6 @@ public class AddUser extends HttpServlet {
             url = "/loginForm.jsp";
 
             session.setAttribute("loginNew", "Please login " + username);
-
-
 
 
         } else {

@@ -23,7 +23,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-//Todo remove password error from login jsp
 /**
  * Created by toddkinsman on 9/22/16.
  *
@@ -64,8 +63,6 @@ public class UserLoggedIn extends HttpServlet {
         session.setAttribute("storageLocations", storageLocations);
         session.setAttribute("storageMapLocations", mapStorageLocation);
 
-
-//        //Todo get user location from user
         storageSpaces = getStorageSpaces(username);
         session.setAttribute("storageSpaces", storageSpaces);
 

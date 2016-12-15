@@ -21,7 +21,6 @@ public class UserDao {
      *
      * @return All users
      */
-    //Todo add error handling for each function
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
@@ -37,7 +36,6 @@ public class UserDao {
      * @return user
      */
     public User getUser(int id) {
-        //TODO return a user for the given id
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         User user = (User) session.get(User.class, id);
         session.close();
@@ -51,7 +49,6 @@ public class UserDao {
      * @return the id of the inserted record
      */
     public int addUser(User user) {
-        //TODO add the user and return the id of the inserted user
 
         Transaction trns = null;
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
@@ -64,7 +61,6 @@ public class UserDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             log.info("The runtime exception to add user: " + e);
         } finally {
             session.flush();
@@ -72,8 +68,6 @@ public class UserDao {
         }
 
         int id = user.getUserid();
-        //TODO take out printline and replace with log
-        System.out.println("user ID of added: " + id);
         return id;
     }
 
@@ -82,7 +76,6 @@ public class UserDao {
      * @param id
      */
     public int deleteUser(int id) {
-        // TODO delete the user with the given id
         Transaction trns = null;
         int sucInt;
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
@@ -97,7 +90,6 @@ public class UserDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             sucInt = 0;
             logHibr.trace("The runtime exception to delete user: " + e);
         } finally {
@@ -114,7 +106,6 @@ public class UserDao {
      */
 
     public void updateUser(User user) {
-        // TODO update the user
         Transaction trns = null;
         Session session = SessionFactoryProvider.getSessionFactory().openSession();
         try {
@@ -125,7 +116,6 @@ public class UserDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             log.info("The runtime exception to update user: " + e);
         } finally {
             session.flush();
@@ -172,7 +162,6 @@ public class UserDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             log.info("The runtime exception to update user: " + e);
         } finally {
             session.flush();

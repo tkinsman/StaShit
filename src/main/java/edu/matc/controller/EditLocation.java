@@ -11,6 +11,9 @@ import java.io.IOException;
 
 
 /**
+ *
+ * Send to edit location controller
+ *
  * Created by toddkinsman on 12/2/16.
  */
 @WebServlet(

@@ -66,8 +66,6 @@ public class StorageLocationDao {
             if (trns != null) {
                 trns.rollback();
             }
-            //Todo Take this print out!
-            e.printStackTrace();
             log.info("There was a runtime exception to add storage loc: " + e);
 
         } finally {
@@ -100,7 +98,6 @@ public class StorageLocationDao {
                 trns.rollback();
             }
             sucInt = 0;
-            e.printStackTrace();
             log.info("The runtime exception to update storage location: " + e);
         } finally {
             session.flush();
@@ -131,7 +128,6 @@ public class StorageLocationDao {
             if (trns != null) {
                 trns.rollback();
             }
-            e.printStackTrace();
             log.info("this is a delete exception: " + e);
             sucInt = 0;
 

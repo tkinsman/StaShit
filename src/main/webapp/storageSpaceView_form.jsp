@@ -32,7 +32,6 @@
     <div class="form-group">
         <label for="storageLocId">Storage Location</label>
 
-        <%--todo need to update with locaiton jsp--%>
         <a href="">Add Location</a>
         <select name="storageLocId" id="storageLocId" class="form-control">
             <c:forEach var="location" items="${storageLocations}">
@@ -43,7 +42,6 @@
 
     <div class="btn-group">
 
-        <%--todo fix this--%>
         <button type="button" class="btn btn-default" ><a href="/stashit/userhome">Cancel</a></button>
     </div>
 

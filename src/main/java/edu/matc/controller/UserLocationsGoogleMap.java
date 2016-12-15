@@ -89,7 +89,6 @@ public class UserLocationsGoogleMap extends HttpServlet{
         storageLocationDao = new StorageLocationDao();
         List<StorageLocation> storageLocations = new ArrayList<StorageLocation>();
 
-        //// TODO: 11/29/16 fixe the name of method
         storageLocations = storageLocationDao.getStorageLocationsByUserName(username);
 
         return storageLocations;
