@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ *
+ *  Controller to add storage space to a specific user location.
+ *
  * Created by toddkinsman on 9/22/16.
  */
 
@@ -35,6 +38,8 @@ public class AddStorageSpace extends HttpServlet {
 
     /**
      *  Handles HTTP POST requests for new storage space form.
+     *
+     *
      * @param req
      * @param resp
      * @throws ServletException
@@ -46,7 +51,6 @@ public class AddStorageSpace extends HttpServlet {
         HttpSession session = req.getSession();
         storageSpaceDao = new StorageSpaceDao();
 
-        //TOdo: add to validagtion class
         String ssName = req.getParameter("ssName");
         String ssDescription = req.getParameter("ssDescription");
         String ssType = req.getParameter("ssType");
@@ -56,7 +60,6 @@ public class AddStorageSpace extends HttpServlet {
 
         StorageSpace storageSpace = new StorageSpace(ssName, ssDescription, ssType, Boolean.FALSE, 0, storageLocId);
 
-        // TODO: 11/30/16 add validation to the form
         storageSpaceDao.addStorageSpaceToLocation(storageSpace);
         storageSpaceList = storageSpaceDao.getAllRelatedStorageSpacesForUser(username);
 

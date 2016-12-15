@@ -86,6 +86,82 @@ public class SignUpValidation {
 
     }
 
+    /**
+     *  Validate form input valid for creation of new storage space
+     *
+     * @param ssName
+     * @param ssDescription
+     * @param ssType
+     * @param ssAvailibility
+     * @param ssRating
+     * @param storageLocationId
+     * @return
+     */
+    public boolean validateNewStorageSpace(String ssName, String ssDescription, String ssType, Boolean ssAvailibility,
+                                           int ssRating, int storageLocationId) {
+
+        boolean validData = true;
+
+        if (ssName == null || ssName.isEmpty()) {
+
+            validData = false;
+
+        } else if(ssDescription == null || ssDescription.isEmpty()) {
+            validData = false;
+
+        } else if(ssType == null || ssType.isEmpty()) {
+            validData = false;
+
+        } else if(ssAvailibility == null) {
+            validData = false;
+
+        }
+
+        return validData;
+    }
+
+    /**
+     *  validate form input valid for create of new storage location
+     *
+     * @param stoLocDescription
+     * @param stoLocAddress
+     * @param city
+     * @param stoLocState
+     * @param stoLocZip
+     * @param stoLocName
+     * @param userName
+     * @return
+     */
+    public boolean validateNewLocation(String stoLocDescription, String stoLocAddress, String city, String stoLocState,
+                                       String stoLocZip, String stoLocName, String userName) {
+
+        boolean validData = true;
+
+        if (stoLocDescription == null || stoLocDescription.isEmpty()) {
+            validData = false;
+
+        } else if(stoLocAddress == null || stoLocAddress.isEmpty()) {
+            validData = false;
+
+        } else if(city == null || city.isEmpty()) {
+            validData = false;
+
+        } else if(stoLocState == null || stoLocState.isEmpty()) {
+            validData = false;
+
+        } else if(stoLocZip == null || stoLocZip.isEmpty()) {
+            validData = false;
+
+        } else if(stoLocName == null || stoLocName.isEmpty()) {
+            validData = false;
+
+        } else if(userName == null || userName.isEmpty()) {
+            validData = false;
+        }
+
+        return validData;
+    }
+
 
     /**
      * Makes sure user name is unique for user creation

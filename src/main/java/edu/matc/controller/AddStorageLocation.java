@@ -52,7 +52,6 @@ public class AddStorageLocation extends HttpServlet{
         HttpSession session = req.getSession();
         storageLocationDao1 = new StorageLocationDao();
 
-        //Todo: add to validation class
         String stoLocName = req.getParameter("stoLocName");
         String stoLocDescription = req.getParameter("stoLocDescription");
         String stoLocAddress = req.getParameter("stoLocAddress");
@@ -60,13 +59,11 @@ public class AddStorageLocation extends HttpServlet{
         String state = req.getParameter("stoLocState");
         String zip = req.getParameter("stoLocZip");
         String username = req.getRemoteUser();
-
-        StorageLocation storageLocation = new StorageLocation(stoLocDescription, stoLocAddress, city, state, zip, stoLocName, username);
+        StorageLocation storageLocation = new StorageLocation(stoLocDescription, stoLocAddress, city, state,
+                zip, stoLocName, username);
 
         storageLocationDao1.addStorageLocation(storageLocation);
         storageLocationList = addStorageloc(username);
-
-        log.info("After add size: " + storageLocationList.size());
 
         session.setAttribute("storageLocations", storageLocationList);
 
@@ -79,6 +76,7 @@ public class AddStorageLocation extends HttpServlet{
     }
 
     /**
+     *  Helper method to get all locations associated with a user.
      *
      * @param username
      * @return storage location object
