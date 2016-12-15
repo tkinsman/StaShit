@@ -18,19 +18,21 @@ stoLocs = $("#storageMapLocations").val();
 
 console.log("Sto locs: " + stoLocs);
 
+var username = $("#userNameForMap").val();
+stoLocs = $("#storageMapLocations").val();
 
 function loadmaps() {
+
+
     $.ajax({
-        url: "http://localhost:8080/stashit/UserService/userMaplocations/toddName",
+        url: "http://localhost:8080/stashit/UserService/userMaplocations/" + username,
         type: "GET",
     })
         .done(function (data, textStatus, jqXHR) {
             console.log("HTTP Request Succeeded: " + jqXHR.status);
             console.log(data);
             userMarkers = data;
-            // locations_callback(data);
             getUserLocationLatLong();
-            // addLocationMarkers(data);
 
 
 
@@ -39,13 +41,10 @@ function loadmaps() {
             console.log("HTTP Request Failed");
         })
         .always(function () {
-            /* ... */
+
         });
 
 }
-
-
-
 
 function createUserSpecificMap(lat, long) {
     var currentPosition = {lat: lat, lng: long};
